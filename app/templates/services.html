@@ -1,0 +1,394 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services - Thendral City Developers{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===========================
+   SERVICES PAGE — Corporate Premium
+=========================== */
+
+/* Hero Banner */
+.srv-hero {
+    position: relative;
+    height: 55vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(40, 40, 43, 0.7), rgba(40, 40, 43, 0.85)), url('{{ url_for('static', filename='images/home1.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+.srv-hero-content {
+    max-width: 800px;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.srv-tag {
+    display: inline-block;
+    color: #F3C623;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.srv-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.srv-hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Services Minimal Grid */
+.srv-main {
+    background: #FFFFFF;
+    padding: 7rem 0;
+}
+
+.srv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.srv-card {
+    background: transparent;
+    padding: 3.5rem 2.5rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+}
+
+.srv-card:hover {
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    transform: translateY(-8px);
+    border-color: #E2E8F0;
+    z-index: 2;
+}
+
+.srv-icon {
+    width: 60px;
+    height: 60px;
+    color: #F3C623;
+    margin-bottom: 2rem;
+    transition: transform 0.4s ease;
+}
+
+.srv-card:hover .srv-icon {
+    transform: scale(1.1);
+}
+
+.srv-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #28282B;
+    margin-bottom: 1.25rem;
+}
+
+.srv-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #718096;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* Optional Bottom Accent Line on Hover */
+.srv-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #F3C623;
+    transition: width 0.4s ease;
+}
+
+.srv-card:hover::after {
+    width: 100%;
+}
+
+/* Why Choose Us Minimal */
+.srv-why {
+    background: #fff;
+    padding: 7rem 0;
+    border-top: 1px solid #E2E8F0;
+}
+
+.why-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.why-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: #28282B;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.why-header p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #4A5568;
+    line-height: 1.8;
+}
+
+.why-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 2rem;
+}
+
+.why-feature-item {
+    border-left: 2px solid #F3C623;
+    padding-left: 1.5rem;
+}
+
+.why-feature-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 0.5rem;
+}
+
+.why-feature-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #718096;
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.srv-cta {
+    background: #28282B;
+    padding: 6rem 0;
+    text-align: center;
+    color: #fff;
+}
+
+.srv-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.srv-cta p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+.srv-cta-btn {
+    display: inline-block;
+    background: #F3C623;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1.2rem 3rem;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.srv-cta-btn:hover {
+    background: #D4A017;
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .srv-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-layout { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+@media (max-width: 768px) {
+    .srv-hero-title { font-size: 3rem; }
+    .srv-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .why-features { grid-template-columns: 1fr; }
+    .srv-card { padding: 2.5rem 2rem; background: #fff; border-color: #E2E8F0; }
+    .srv-card::after { width: 100%; height: 2px; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<section class="srv-hero">
+    <div class="srv-hero-content animate-on-scroll">
+        <span class="srv-tag">What We Do</span>
+        <h1 class="srv-hero-title">Expertise & Innovation</h1>
+        <p class="srv-hero-subtitle">Comprehensive architectural, engineering, and construction services designed for a modern world.</p>
+    </div>
+</section>
+
+<!-- Minimal Corporate Services Grid -->
+<section class="srv-main">
+    <div class="container">
+        <div class="srv-grid">
+            
+            <!-- Service 1 -->
+            <a href="/contact" class="srv-card animate-on-scroll">
+                <!-- SVG: Building / Residential -->
+                <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18"></path>
+                    <path d="M9 8h1"></path>
+                    <path d="M9 12h1"></path>
+                    <path d="M9 16h1"></path>
+                    <path d="M14 8h1"></path>
+                    <path d="M14 12h1"></path>
+                    <path d="M14 16h1"></path>
+                    <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+                </svg>
+                <h3 class="srv-title">Building Construction</h3>
+                <p class="srv-desc">Complete end-to-end residential and commercial building construction services. From foundation laying to final aesthetic finishing, we deliver with absolute precision.</p>
+            </a>
+
+            <!-- Service 2 -->
+            <a href="/contact" class="srv-card animate-on-scroll" style="transition-delay: 0.1s;">
+                <!-- SVG: Industry / Factory -->
+                <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 21H2V9l4-3 4 3 4-3 4 3 4-3v12z"></path>
+                    <path d="M15 21v-5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v5"></path>
+                    <line x1="8" y1="5" x2="8" y2="9"></line>
+                    <line x1="16" y1="5" x2="16" y2="9"></line>
+                </svg>
+                <h3 class="srv-title">Industrial Facilities</h3>
+                <p class="srv-desc">Specialized structural construction for massive industrial setups. We build robust warehouses, automated factories, and high-capacity manufacturing plants.</p>
+            </a>
+
+            <!-- Service 3 -->
+            <a href="/contact" class="srv-card animate-on-scroll" style="transition-delay: 0.2s;">
+                <!-- SVG: Civil Engineering / Blueprint -->
+                <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <path d="M9 15h6"></path>
+                    <path d="M9 11h6"></path>
+                    <circle cx="9" cy="11" r="1" fill="currentColor"></circle>
+                    <circle cx="9" cy="15" r="1" fill="currentColor"></circle>
+                </svg>
+                <h3 class="srv-title">Civil Engineering</h3>
+                <p class="srv-desc">Technical structural design, master site planning, and critical infrastructure development engineered to withstand the test of time and environmental stress.</p>
+            </a>
+
+            <!-- Service 4 -->
+            <a href="/contact" class="srv-card animate-on-scroll">
+                <!-- SVG: Interior Design / Roller -->
+                <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 2H7a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path>
+                    <path d="M12 8v4"></path>
+                    <path d="M12 12c-2.2 0-4 1.8-4 4v4"></path>
+                    <path d="M8 22h8"></path>
+                </svg>
+                <h3 class="srv-title">Interior Design</h3>
+                <p class="srv-desc">Transform empty structures into living art. Our interior architects create functional, breathtaking spaces perfectly aligned with your corporate or personal aesthetic.</p>
+            </a>
+
+            <!-- Service 5 -->
+            <a href="/contact" class="srv-card animate-on-scroll" style="transition-delay: 0.1s;">
+                <!-- SVG: Renovation / Tools -->
+                <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+                <h3 class="srv-title">Refurbishment</h3>
+                <p class="srv-desc">Breathe new life into aging architecture. We execute seamless structural renovations and aesthetic remodeling to modernize your existing property.</p>
+            </a>
+
+            <!-- Service 6 -->
+            <a href="/contact" class="srv-card animate-on-scroll" style="transition-delay: 0.2s;">
+                <!-- SVG: Project Management -->
+                <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <h3 class="srv-title">Project Management</h3>
+                <p class="srv-desc">Complete end-to-end oversight. We strictly govern timelines, enforce budget constraints, and mandate rigorous quality control standards across the build lifecycle.</p>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Minimal Section -->
+<section class="srv-why">
+    <div class="container">
+        <div class="why-layout">
+            <div class="why-header animate-on-scroll">
+                <h2>Our Commitment to Excellence</h2>
+                <p>At Thendral City Developers, we construct more than physical buildings—we forge lasting trust. Our elite standards govern every stage of the development process.</p>
+            </div>
+            
+            <div class="why-features">
+                <div class="why-feature-item animate-on-scroll">
+                    <div class="why-feature-title">Premium Materials</div>
+                    <div class="why-feature-desc">We strictly source high-grade, ISO-certified materials from tier-1 suppliers to ensure uncompromised structural integrity.</div>
+                </div>
+                <div class="why-feature-item animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="why-feature-title">Elite Workforce</div>
+                    <div class="why-feature-desc">Our dedicated team of 750+ master craftsmen, architects, and engineers deploy decades of specialized expertise.</div>
+                </div>
+                <div class="why-feature-item animate-on-scroll">
+                    <div class="why-feature-title">Financial Transparency</div>
+                    <div class="why-feature-desc">Zero hidden variables. We provide forensic-level estimates and maintain absolute financial clarity throughout.</div>
+                </div>
+                <div class="why-feature-item animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="why-feature-title">Punctual Delivery</div>
+                    <div class="why-feature-desc">We respect your time. Our project managers utilize advanced scheduling logic to guarantee on-time handover.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="srv-cta">
+    <div class="container animate-on-scroll">
+        <h2>Ready to break ground?</h2>
+        <p>Partner with our most trusted developers. Connect with our engineering consultants to initiate your project blueprint.</p>
+        <a href="/contact" class="srv-cta-btn">Initiate Consultation</a>
+    </div>
+</section>
+
+{% endblock %}

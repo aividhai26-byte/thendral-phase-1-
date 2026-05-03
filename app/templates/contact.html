@@ -1,0 +1,362 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Thendral City Developers{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===========================
+   CONTACT PAGE — Corporate Premium
+=========================== */
+
+/* Hero Section */
+.ct-hero {
+    position: relative;
+    height: 45vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(40, 40, 43, 0.7), rgba(40, 40, 43, 0.85)), url('{{ url_for('static', filename='images/home3.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.ct-hero-content {
+    max-width: 800px;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.ct-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.ct-hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Contact Main Section */
+.ct-section {
+    padding: 6rem 0;
+    background: #FFFFFF;
+}
+
+.ct-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+.ct-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.ct-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: #F3C623;
+}
+
+/* Contact Form */
+.ct-form-box {
+    background: #fff;
+    padding: 3rem;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.ct-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.ct-form-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.ct-form-label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #28282B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.ct-form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #4A5568;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.ct-form-control:focus {
+    outline: none;
+    border-color: #F3C623;
+    box-shadow: 0 0 0 3px rgba(243, 198, 35, 0.1);
+}
+
+.ct-btn-submit {
+    display: inline-block;
+    background: #28282B;
+    color: #fff;
+    border: none;
+    padding: 1.2rem 3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.ct-btn-submit:hover {
+    background: #F3C623;
+}
+
+/* Contact Info */
+.ct-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.ct-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.ct-info-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(243, 198, 35, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F3C623;
+    flex-shrink: 0;
+}
+
+.ct-info-text h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 0.3rem;
+}
+
+.ct-info-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #4A5568;
+    line-height: 1.6;
+}
+
+/* Follow Us Socials */
+.ct-social-box {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #E2E8F0;
+}
+
+.ct-social-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 1.5rem;
+}
+
+.ct-social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.ct-social-link {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #28282B;
+    transition: all 0.3s;
+    border-radius: 4px;
+}
+
+.ct-social-link:hover {
+    background: #F3C623;
+    color: #fff;
+    border-color: #F3C623;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .ct-grid { grid-template-columns: 1fr; gap: 4rem; }
+    .ct-form-row { flex-direction: column; gap: 0; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="ct-hero">
+    <div class="ct-hero-content animate-on-scroll">
+        <h1 class="ct-hero-title">Get in Touch</h1>
+        <p class="ct-hero-subtitle">Whether you're looking to build your dream home or have a business inquiry, our team is ready to assist you.</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="ct-section">
+    <div class="container">
+        <div class="ct-grid">
+            
+            <!-- Contact Form -->
+            <div class="animate-on-scroll slide-left">
+                <div class="ct-form-box">
+                    <h2 class="ct-section-title">Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div class="ct-form-group">
+                            <label class="ct-form-label" for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" class="ct-form-control" required placeholder="John Doe">
+                        </div>
+                        <div class="ct-form-row">
+                            <div class="ct-form-group" style="flex: 1;">
+                                <label class="ct-form-label" for="email">Email *</label>
+                                <input type="email" id="email" name="email" class="ct-form-control" required placeholder="john@example.com">
+                            </div>
+                            <div class="ct-form-group" style="flex: 1;">
+                                <label class="ct-form-label" for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" class="ct-form-control" placeholder="+91 98765 43210">
+                            </div>
+                        </div>
+                        <div class="ct-form-group">
+                            <label class="ct-form-label" for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="ct-form-control" placeholder="How can we help?">
+                        </div>
+                        <div class="ct-form-group">
+                            <label class="ct-form-label" for="message">Message *</label>
+                            <textarea id="message" name="message" class="ct-form-control" required placeholder="Write your message here..." rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="ct-btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="animate-on-scroll slide-right">
+                <h2 class="ct-section-title">Contact Information</h2>
+                
+                <div class="ct-info-wrapper">
+                    <!-- Address -->
+                    <div class="ct-info-item">
+                        <div class="ct-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div class="ct-info-text">
+                            <h4>Head Office</h4>
+                            <p>Thendral City Developers<br>India</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone -->
+                    <div class="ct-info-item">
+                        <div class="ct-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div class="ct-info-text">
+                            <h4>Direct Line</h4>
+                            <p>+91 82482 53662</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="ct-info-item">
+                        <div class="ct-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div class="ct-info-text">
+                            <h4>Email Enquiries</h4>
+                            <p>info@thendralcity.com</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Hours -->
+                    <div class="ct-info-item">
+                        <div class="ct-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg>
+                        </div>
+                        <div class="ct-info-text">
+                            <h4>Working Hours</h4>
+                            <p>Monday - Saturday: 9:00 AM - 6:00 PM<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Follow Icons instead of Image -->
+                <div class="ct-social-box">
+                    <h3 class="ct-social-title">Follow Us On</h3>
+                    <div class="ct-social-links">
+                        <a href="#" class="ct-social-link" title="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="ct-social-link" title="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="ct-social-link" title="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" class="ct-social-link" title="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                        </a>
+                        <a href="#" class="ct-social-link" title="X (Twitter)">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Google Map Embed -->
+<section style="height: 500px; width: 100%;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.125218620179!2d77.34060847452113!3d11.10404425306636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba907f7596019cd%3A0x5bc204ef7b1e1d88!2sTHENDRAL%20CITY%20DEVELOPERS%20AND%20PROMOTERS!5e0!3m2!1sen!2sin!4v1776781749391!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+{% endblock %}

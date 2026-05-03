@@ -1,0 +1,294 @@
+/* Base CSS - Variables, Reset, Typography, Global Styles */
+
+/* CSS Variables */
+:root {
+    /* Premium White + Gold + Brown Palette */
+    --primary-brown: #4A3122;        /* deep brown for headings and main text */
+    --light-brown: #6D5A50;          /* soft brown for body */
+    --premium-gold: #F3C623;         /* unified primary gold */
+    --gold-hover: #D4A017;           /* gold hover / pressed */
+    --gold-pale: rgba(243,198,35,0.12); /* subtle gold tint */
+    --clean-white: #FFFFFF;
+    --warm-white: #FFFFFF;           /* main section bg */
+    --cream: #FDFBF7;                /* alternate section bg */
+    --soft-grey: #FAFAFA;
+    --off-white: #FFFFFF;
+    --deep-brown: #4A3122;           /* deep rich brown */
+    --text-dark: #4A3122;
+    --text-body: #6D5A50;            /* warm readable body text */
+    --text-muted: #8C7B70;           /* warm muted labels */
+    --border-color: #EAE6DF;         /* warm beige border */
+    --border-gold: rgba(243,198,35,0.3); /* gold-tinted border */
+    --success-green: #27AE60;
+    --error-red: #E74C3C;
+    
+    /* Spacing - More generous for premium feel */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2.5rem;
+    --spacing-3xl: 4rem;
+    
+    /* Typography - Premium fonts
+     * Cormorant Garamond: Headings SemiBold (600), Menu Medium (500)
+     * DM Sans: Full website body (300/400/500/600)
+     * DM Sans: Corporate bold look (400/500/600/700)
+     */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-corporate: 'DM Sans', sans-serif;
+    --font-weight-heading: 600;
+    --font-weight-menu: 500;
+    
+    /* Font Sizes - Professional hierarchy */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    
+    /* Line Heights - Generous for readability */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    
+    /* Letter Spacing - Premium feel */
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0.3px;
+    --letter-spacing-wide: 0.5px;
+    
+    /* Transitions - Smooth */
+    --transition-fast: 0.15s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+    
+    /* Shadows - Subtle and professional */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+    
+    /* Border Radius - Professional, not rounded */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    /* Z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 100;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    
+    /* Container max-width */
+    --container-max: 1200px;
+    --container-padding: 0 2rem;
+}
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto; /* Lenis handles smooth scroll */
+    box-sizing: border-box;
+}
+
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--deep-brown);
+    background-color: var(--off-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    color: var(--deep-brown);
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-light);
+}
+
+a {
+    color: #F3C623;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-green-light);
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Section */
+.section {
+    padding: var(--spacing-3xl) 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-title h2 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--primary-brown);
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-title p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--font-size-lg);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: #F3C623; }
+.text-secondary { color: var(--color-secondary-yellow); }
+.text-muted { color: var(--color-text-light); }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+/* Grid System */
+.grid {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Flex Utilities */
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-wrap { flex-wrap: wrap; }
+.flex-column { flex-direction: column; }
+
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Icons */
+.icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-small {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none !important;
+}
+
+/* Loading State */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}

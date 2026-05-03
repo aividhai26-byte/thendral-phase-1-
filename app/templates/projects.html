@@ -1,0 +1,554 @@
+{% extends "base.html" %}
+
+{% block title %}Our Projects - Thendral City Developers{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===========================
+   PROJECTS PAGE — White + Gold
+=========================== */
+.projects-hero {
+    position: relative;
+    height: 55vh;
+    min-height: 360px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.projects-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("{{ url_for('static', filename='images/costructed completed buildign.jpg') }}");
+    background-size: cover;
+    background-position: center;
+}
+.projects-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(40,40,43,0.75) 0%, rgba(40,40,43,0.55) 100%);
+}
+.projects-hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+.projects-hero-label {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #F3C623;
+    margin-bottom: 1rem;
+}
+.projects-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+.projects-hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+}
+
+/* ===========================
+   TAB SWITCHER — Left / Right
+=========================== */
+.projects-tab-section {
+    background-color: #FFFFFF;
+    padding: 4rem 0 5rem;
+}
+.projects-tab-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1.5px solid #E2E8F0;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    box-shadow: 0 4px 20px rgba(243,198,35,0.12);
+}
+.projects-tab-btn {
+    padding: 1.1rem 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    background: #fff;
+    color: #718096;
+    border: none;
+    outline: none;
+    transition: all 0.35s ease;
+    letter-spacing: 0.03em;
+}
+.projects-tab-btn:first-child {
+    border-right: 1.5px solid #E2E8F0;
+}
+.projects-tab-btn.active {
+    background: #F3C623;
+    color: #fff;
+    letter-spacing: 0.05em;
+}
+.projects-tab-btn:not(.active):hover {
+    background: #FFFFFF;
+    color: #28282B;
+}
+.tab-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    opacity: 0.6;
+}
+.projects-tab-btn.active .tab-dot {
+    opacity: 1;
+}
+
+/* ===========================
+   PROJECT GRID
+=========================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+.project-card {
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(243,198,35,0.2);
+    border-color: #F3C623;
+}
+.project-card-image {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+.project-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.project-card:hover .project-card-image img {
+    transform: scale(1.06);
+}
+.project-card-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: #F3C623;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+}
+.project-card-badge.completed {
+    background: #28282B;
+}
+.project-card-body {
+    padding: 1.5rem;
+    border-top: 2px solid #E2E8F0;
+    transition: border-color 0.35s ease;
+}
+.project-card:hover .project-card-body {
+    border-top-color: #F3C623;
+}
+.project-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #28282B;
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+}
+.project-card-location {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #F3C623;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.project-card-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #4A5568;
+    line-height: 1.65;
+    margin: 0 0 1.25rem;
+}
+.project-card-meta {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E2E8F0;
+}
+.project-card-meta-item {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: #718096;
+}
+.project-card-meta-item strong {
+    display: block;
+    color: #28282B;
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+}
+.project-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #F3C623;
+    margin-top: 1rem;
+    transition: gap 0.3s ease;
+}
+.project-card:hover .project-card-link {
+    gap: 0.7rem;
+}
+
+/* Empty state */
+.projects-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem 2rem;
+}
+.projects-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+.projects-empty h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    color: #28282B;
+    margin-bottom: 0.75rem;
+}
+.projects-empty p {
+    font-family: 'DM Sans', sans-serif;
+    color: #718096;
+    font-size: 1rem;
+}
+
+/* ===========================
+   CTA BANNER
+=========================== */
+.projects-cta-banner {
+    background: #28282B;
+    padding: 5rem 0;
+}
+.projects-cta-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+}
+.projects-cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+}
+.projects-cta-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+}
+.projects-cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.btn-gold {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #F3C623;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-gold:hover {
+    background: #D4A017;
+    transform: translateY(-2px);
+}
+.btn-outline-white {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: 2px solid rgba(243,198,35,0.6);
+    color: #F3C623;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-outline-white:hover {
+    background: #F3C623;
+    color: #fff;
+    border-color: #F3C623;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .projects-hero-title { font-size: 2.25rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .projects-cta-inner { flex-direction: column; text-align: center; }
+    .projects-cta-actions { justify-content: center; }
+    .projects-tab-row { max-width: 100%; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="projects-hero">
+    <div class="projects-hero-bg"></div>
+    <div class="projects-hero-overlay"></div>
+    <div class="projects-hero-content">
+        <span class="projects-hero-label">Our Portfolio</span>
+        <h1 class="projects-hero-title">Crafted With<br><em style="color:#F3C623;">Excellence</em></h1>
+        <p class="projects-hero-sub">Explore our landmark projects across the nation</p>
+    </div>
+</section>
+
+<!-- Projects Tab Section -->
+<section class="projects-tab-section" id="projects-list">
+    <div class="container">
+
+        <!-- Current / Completed Tab Toggle -->
+        <div class="projects-tab-row">
+            <button class="projects-tab-btn {% if active_tab != 'completed' %}active{% endif %}" 
+                    onclick="switchTab('current', this)"
+                    id="tab-current">
+                <span class="tab-dot"></span>Current Projects
+            </button>
+            <button class="projects-tab-btn {% if active_tab == 'completed' %}active{% endif %}" 
+                    onclick="switchTab('completed', this)"
+                    id="tab-completed">
+                <span class="tab-dot"></span>Completed Projects
+            </button>
+        </div>
+
+        <!-- Current Projects Grid -->
+        <div id="panel-current" class="{% if active_tab == 'completed' %}hidden{% endif %}">
+            <div class="projects-grid">
+                {% set current_projects = projects | selectattr('category', 'equalto', 'current') | list %}
+                {% if current_projects %}
+                    {% for project in current_projects %}
+                    <a href="{{ url_for('main.project_detail', project_id=project.id) }}" class="project-card">
+                        <div class="project-card-image">
+                            {% if project.image %}
+                                <img src="{{ url_for('static', filename=project.image) }}"
+                                     onerror="this.src='{{ url_for('static', filename='images/home1.jpg') }}'"
+                                     alt="{{ project.title }}">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='images/home1.jpg') }}" alt="{{ project.title }}">
+                            {% endif %}
+                            <span class="project-card-badge">In Progress</span>
+                        </div>
+                        <div class="project-card-body">
+                            <h3 class="project-card-title">{{ project.title }}</h3>
+                            <div class="project-card-location">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                {{ project.location or 'India' }}
+                            </div>
+                            <p class="project-card-desc">{{ project.short_description or project.description | truncate(110) }}</p>
+                            <div class="project-card-meta">
+                                {% if project.area_sqft %}
+                                <div class="project-card-meta-item">
+                                    <strong>{{ project.area_sqft }}</strong>Total Area
+                                </div>
+                                {% endif %}
+                                {% if project.floors %}
+                                <div class="project-card-meta-item">
+                                    <strong>{{ project.floors }}</strong>Floors
+                                </div>
+                                {% endif %}
+                                {% if project.completion_date %}
+                                <div class="project-card-meta-item">
+                                    <strong>{{ project.completion_date.strftime('%b %Y') }}</strong>Est. Completion
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="project-card-link">
+                                View Details
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    <div class="projects-empty">
+                        <div class="projects-empty-icon">🏗️</div>
+                        <h3>No Current Projects</h3>
+                        <p>Stay tuned — exciting new projects are coming soon.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Completed Projects Grid -->
+        <div id="panel-completed" class="{% if active_tab != 'completed' %}hidden{% endif %}">
+            <div class="projects-grid">
+                {% set completed_projects = projects | selectattr('category', 'equalto', 'completed') | list %}
+                {% if completed_projects %}
+                    {% for project in completed_projects %}
+                    <a href="{{ url_for('main.project_detail', project_id=project.id) }}" class="project-card">
+                        <div class="project-card-image">
+                            {% if project.image %}
+                                <img src="{{ url_for('static', filename=project.image) }}"
+                                     onerror="this.src='{{ url_for('static', filename='images/home2.jpg') }}'"
+                                     alt="{{ project.title }}">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='images/home2.jpg') }}" alt="{{ project.title }}">
+                            {% endif %}
+                            <span class="project-card-badge completed">Completed</span>
+                        </div>
+                        <div class="project-card-body">
+                            <h3 class="project-card-title">{{ project.title }}</h3>
+                            <div class="project-card-location">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                {{ project.location or 'India' }}
+                            </div>
+                            <p class="project-card-desc">{{ project.short_description or project.description | truncate(110) }}</p>
+                            <div class="project-card-meta">
+                                {% if project.area_sqft %}
+                                <div class="project-card-meta-item">
+                                    <strong>{{ project.area_sqft }}</strong>Total Area
+                                </div>
+                                {% endif %}
+                                {% if project.project_type %}
+                                <div class="project-card-meta-item">
+                                    <strong>{{ project.project_type }}</strong>Type
+                                </div>
+                                {% endif %}
+                                {% if project.completion_date %}
+                                <div class="project-card-meta-item">
+                                    <strong>{{ project.completion_date.strftime('%Y') }}</strong>Completed
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="project-card-link">
+                                View Gallery
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    <div class="projects-empty">
+                        <div class="projects-empty-icon">🏢</div>
+                        <h3>No Completed Projects Yet</h3>
+                        <p>Our completed projects will appear here soon.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="projects-cta-banner">
+    <div class="container">
+        <div class="projects-cta-inner">
+            <div>
+                <h2 class="projects-cta-title">Have a Project in Mind?</h2>
+                <p class="projects-cta-sub">Let's discuss how we can bring your vision to life. Get a free consultation today.</p>
+            </div>
+            <div class="projects-cta-actions">
+                <a href="/contact" class="btn-gold">Get Free Consultation</a>
+                <a href="/services" class="btn-outline-white">Our Services</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function switchTab(tab, clickedBtn) {
+    // Update buttons
+    document.querySelectorAll('.projects-tab-btn').forEach(b => b.classList.remove('active'));
+    clickedBtn.classList.add('active');
+    
+    // Show/hide panels
+    document.getElementById('panel-current').classList.toggle('hidden', tab === 'completed');
+    document.getElementById('panel-completed').classList.toggle('hidden', tab === 'current');
+    
+    // Update URL without reload
+    const url = new URL(window.location);
+    url.searchParams.set('category', tab);
+    window.history.pushState({}, '', url);
+    
+    // Animate in the active grid
+    const activePanel = document.getElementById('panel-' + tab);
+    const cards = activePanel.querySelectorAll('.project-card');
+    cards.forEach((card, i) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, i * 80);
+    });
+}
+
+// On page load, check URL for tab
+document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('category');
+    if (cat === 'completed') {
+        const btn = document.getElementById('tab-completed');
+        if (btn) switchTab('completed', btn);
+    }
+});
+</script>
+{% endblock %}

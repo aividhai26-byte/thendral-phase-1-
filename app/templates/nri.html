@@ -1,0 +1,670 @@
+{% extends "base.html" %}
+
+{% block title %}NRI Guide & Services - Thendral City Developers{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===========================
+   NRI PAGE — Corporate Premium
+=========================== */
+
+/* Hero Section with Floating Form */
+.nri-hero {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to right, rgba(40, 40, 43, 0.85) 0%, rgba(40, 40, 43, 0.4) 100%), url('{{ url_for('static', filename='images/home6.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.nri-hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nri-hero-text {
+    max-width: 600px;
+}
+
+.nri-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.nri-hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
+/* Floating Contact Form */
+.nri-form-box {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    color: #28282B;
+}
+
+.nri-form-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.nri-form-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #718096;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.nri-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.nri-form-control {
+    width: 100%;
+    padding: 0.8rem 0;
+    border: none;
+    border-bottom: 1px solid #E2E8F0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #28282B;
+    background: transparent;
+    transition: border-color 0.3s;
+}
+
+.nri-form-control:focus {
+    outline: none;
+    border-bottom-color: #F3C623;
+}
+
+.nri-form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.nri-btn-submit {
+    width: 100%;
+    background: #F3C623;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 1rem;
+}
+
+.nri-btn-submit:hover {
+    background: #D4A017;
+}
+
+/* Big Reasons Section */
+.nri-reasons {
+    background: #FFFFFF;
+    padding: 6rem 0;
+}
+
+.nri-section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.nri-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #28282B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.nri-section-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #4A5568;
+    line-height: 1.8;
+}
+
+.nri-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem 2rem;
+}
+
+.nri-card {
+    text-align: center;
+    padding: 1rem;
+}
+
+.nri-card-img {
+    height: 70px;
+    margin-bottom: 1.5rem;
+    object-fit: contain;
+}
+
+.nri-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 0.5rem;
+}
+
+.nri-card-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #4A5568;
+    line-height: 1.5;
+}
+
+/* Services Interactive Tabs Section (Premium Layout) */
+.nri-details-interactive {
+    background: #fff;
+    padding: 6rem 0;
+    border-top: 1px solid #E2E8F0;
+}
+
+.interactive-container {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+/* Tabs Navigation */
+.nri-tabs-nav {
+    flex: 0 0 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nri-tab-btn {
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 1.5rem 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #718096;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+}
+
+.nri-tab-btn:hover {
+    color: #4A5568;
+    background: rgba(247, 243, 237, 0.5);
+}
+
+.nri-tab-btn.active {
+    color: #28282B;
+    border-left-color: #F3C623;
+    background: #FFFFFF;
+}
+
+/* Tabs Content */
+.nri-tabs-content {
+    flex: 1;
+    position: relative;
+    min-height: 500px;
+}
+
+.nri-tab-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(20px);
+    display: flex;
+    flex-direction: column;
+}
+
+.nri-tab-pane.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative;
+}
+
+.pane-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+}
+
+.nri-service-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.nri-service-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #4A5568;
+    line-height: 1.6;
+    background: #FFFFFF;
+    padding: 1.5rem;
+    border-left: 2px solid #F3C623;
+    border-radius: 0 4px 4px 0;
+}
+
+.nri-service-list li strong {
+    display: block;
+    color: #28282B;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* FAQ Section (Premium Editorial Accordion) */
+.nri-faq {
+    background: #FFFFFF;
+    padding: 6rem 0;
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+
+details.faq-item {
+    border-bottom: 1px solid #E2E8F0;
+}
+
+details.faq-item:last-child {
+    border-bottom: none;
+}
+
+summary.faq-question {
+    padding: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #28282B;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+summary.faq-question:hover {
+    color: #F3C623;
+}
+
+summary.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+summary.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: #F3C623;
+    transition: transform 0.3s;
+}
+
+details[open] summary.faq-question::after {
+    content: '−';
+}
+
+.faq-answer {
+    padding: 0 2rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    color: #4A5568;
+    line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .interactive-container { flex-direction: column; }
+    .nri-tabs-nav { flex: auto; flex-direction: row; flex-wrap: wrap; width: 100%; border-bottom: 1px solid #E2E8F0; }
+    .nri-tab-btn { padding: 1rem; border-left: none; border-bottom: 3px solid transparent; flex: 1; text-align: center; font-size: 1.2rem; }
+    .nri-tab-btn.active { border-left: none; border-bottom-color: #F3C623; }
+}
+
+@media (max-width: 900px) {
+    .nri-hero { height: auto; padding: 4rem 0; align-items: flex-start; }
+    .nri-hero-container { flex-direction: column; text-align: center; gap: 3rem; }
+    .nri-hero-title { font-size: 3.5rem; }
+    .nri-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .nri-service-list { grid-template-columns: 1fr; }
+    summary.faq-question { font-size: 1.3rem; padding: 1.5rem; }
+    .faq-answer { padding: 0 1.5rem 1.5rem; }
+}
+
+@media (max-width: 600px) {
+    .nri-hero { padding: 3rem 0; }
+    .nri-hero-title { font-size: 2.8rem; }
+    .nri-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .nri-tab-btn { font-size: 1rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section with Contact Form -->
+<section class="nri-hero">
+    <div class="container">
+        <div class="nri-hero-container animate-on-scroll">
+            <div class="nri-hero-text">
+                <h1 class="nri-hero-title">Invest today to reap great returns tomorrow</h1>
+                <p class="nri-hero-subtitle">Homes ranging from ₹40L to ₹4Cr</p>
+            </div>
+            
+            <div class="nri-form-box">
+                <h3 class="nri-form-title">Interested to know more</h3>
+                <p class="nri-form-subtitle">Get in touch with our NRI desk</p>
+                <form action="/contact" method="GET">
+                    <div class="nri-form-row">
+                        <div class="nri-form-group" style="flex: 1;">
+                            <input type="text" class="nri-form-control" placeholder="Name*" required>
+                        </div>
+                        <div class="nri-form-group" style="flex: 1;">
+                            <input type="email" class="nri-form-control" placeholder="Email Address*" required>
+                        </div>
+                    </div>
+                    <div class="nri-form-row">
+                        <div class="nri-form-group" style="flex: 1;">
+                            <input type="text" class="nri-form-control" placeholder="Country Code (+1)" required>
+                        </div>
+                        <div class="nri-form-group" style="flex: 2;">
+                            <input type="tel" class="nri-form-control" placeholder="Phone Number*" required>
+                        </div>
+                    </div>
+                    <div class="nri-form-group">
+                        <input type="text" class="nri-form-control" placeholder="Enter City, State of Interest" required>
+                    </div>
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: #4A5568; display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="whatsapp_optin">
+                        <label for="whatsapp_optin">Get updates on WhatsApp</label>
+                    </div>
+                    <button type="submit" class="nri-btn-submit">Enquire Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Big Reasons to Buy (Grid) -->
+<section class="nri-reasons">
+    <div class="container">
+        <div class="nri-section-header animate-on-scroll">
+            <h2 class="nri-section-title">Big Reasons to Buy</h2>
+            <p class="nri-section-subtitle">
+                India's real estate is changing little by little every day, and plentiful avenues for investment have emerged like never before. We bring you premium homes across South India with bright opportunities to connect with your homeland.
+            </p>
+        </div>
+        
+        <div class="nri-grid">
+            <div class="nri-card animate-on-scroll">
+                <img src="{{ url_for('static', filename='images/icons/market.webp') }}" alt="Booming Market" class="nri-card-img">
+                <h3 class="nri-card-title">Booming Market</h3>
+                <p class="nri-card-text">Booming property market with growth across India</p>
+            </div>
+            <div class="nri-card animate-on-scroll" style="transition-delay: 0.1s;">
+                <img src="{{ url_for('static', filename='images/icons/appreciation.webp') }}" alt="Great Appreciation" class="nri-card-img">
+                <h3 class="nri-card-title">Great Appreciation</h3>
+                <p class="nri-card-text">Great appreciation values for higher returns</p>
+            </div>
+            <div class="nri-card animate-on-scroll" style="transition-delay: 0.2s;">
+                <img src="{{ url_for('static', filename='images/icons/tax.webp') }}" alt="Tax Benefits" class="nri-card-img">
+                <h3 class="nri-card-title">Tax Benefits</h3>
+                <p class="nri-card-text">Tax benefits with long-term gains</p>
+            </div>
+            <div class="nri-card animate-on-scroll">
+                <img src="{{ url_for('static', filename='images/icons/investment.webp') }}" alt="Variety of Investments" class="nri-card-img">
+                <h3 class="nri-card-title">Diverse Options</h3>
+                <p class="nri-card-text">Variety of investment opportunities across cities</p>
+            </div>
+            <div class="nri-card animate-on-scroll" style="transition-delay: 0.1s;">
+                <img src="{{ url_for('static', filename='images/icons/loan.webp') }}" alt="Flexible Home Loans" class="nri-card-img">
+                <h3 class="nri-card-title">Flexible Loans</h3>
+                <p class="nri-card-text">Flexible home loan options available</p>
+            </div>
+            <div class="nri-card animate-on-scroll" style="transition-delay: 0.2s;">
+                <img src="{{ url_for('static', filename='images/icons/pay.webp') }}" alt="Versatile Down Payment" class="nri-card-img">
+                <h3 class="nri-card-title">Versatile Payment</h3>
+                <p class="nri-card-text">Versatile down payment options compared to other investments</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Interactive Tabs Section - Redesigned Premium Layout -->
+<section class="nri-details-interactive" style="padding: 6rem 0; background: #FAFAFA;">
+    <div class="container">
+        <div class="nri-section-header animate-on-scroll" style="margin-bottom: 4rem; text-align: center;">
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #C9A84C; margin-bottom: 1rem;">OUR SERVICES FOR YOU</p>
+            <h2 class="nri-section-title" style="margin-bottom: 0;">Seamless Remote Management</h2>
+        </div>
+
+        <div class="srm-selectors animate-on-scroll">
+            <div class="srm-selector-card active" data-target="srm-buying" onclick="switchSRM(this)">
+                <span class="srm-step">01</span>
+                <h3 class="srm-card-name">Buying Property</h3>
+                <p class="srm-card-desc">End-to-end support from shortlisting to possession</p>
+            </div>
+            <div class="srm-selector-card" data-target="srm-legal" onclick="switchSRM(this)">
+                <span class="srm-step">02</span>
+                <h3 class="srm-card-name">Legal &amp; Finance</h3>
+                <p class="srm-card-desc">Compliance, documentation, and NRE/NRO financing</p>
+            </div>
+            <div class="srm-selector-card" data-target="srm-management" onclick="switchSRM(this)">
+                <span class="srm-step">03</span>
+                <h3 class="srm-card-name">Property Management</h3>
+                <p class="srm-card-desc">Remote oversight of rent, tenants, and maintenance</p>
+            </div>
+        </div>
+
+        <div class="srm-stage animate-on-scroll">
+            <div class="srm-banner">
+                <div class="srm-banner-content" id="srm-banner-buying">
+                    <span class="srm-banner-label">01 &mdash; BUYING PROPERTY</span>
+                    <h2 class="srm-banner-title">Your Property.<br>Our Presence.</h2>
+                </div>
+                <div class="srm-banner-content" id="srm-banner-legal" style="display:none; opacity:0;">
+                    <span class="srm-banner-label">02 &mdash; LEGAL &amp; FINANCE</span>
+                    <h2 class="srm-banner-title">Compliant.<br>Transparent. Secure.</h2>
+                </div>
+                <div class="srm-banner-content" id="srm-banner-management" style="display:none; opacity:0;">
+                    <span class="srm-banner-label">03 &mdash; PROPERTY MANAGEMENT</span>
+                    <h2 class="srm-banner-title">Managed Locally.<br>Profits Globally.</h2>
+                </div>
+            </div>
+
+            <div class="srm-features-area">
+                <div class="srm-features-grid active" id="srm-buying">
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Dedicated NRI Desk</h4><p class="srm-feat-desc">One point of contact assigned specifically to you, handling everything on your behalf.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Remote Investment Model</h4><p class="srm-feat-desc">Project shortlisting, site verification, builder coordination, and progress updates managed locally.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Virtual Site Tours</h4><p class="srm-feat-desc">Realistic 3D walkthroughs and live video tours of under-construction and ready properties.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Time-Zone Adjusted</h4><p class="srm-feat-desc">Calls and WhatsApp meetings scheduled per your country local time, every time.</p></div>
+                </div>
+                <div class="srm-features-grid" id="srm-legal">
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">FEMA / RBI Compliance</h4><p class="srm-feat-desc">Guidance on making payments through proper channels and full repatriation rules support.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">RERA &amp; Title Verification</h4><p class="srm-feat-desc">Ensuring the project is registered, legally clear, and completely safe for your investment.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Power of Attorney (PoA)</h4><p class="srm-feat-desc">Acting on your behalf before the Registrar of Property so you do not have to fly down.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Home Loans &amp; NRE/NRO</h4><p class="srm-feat-desc">Tailored financing and expert guidance on funding via NRE/NRO accounts and DTAA benefits.</p></div>
+                </div>
+                <div class="srm-features-grid" id="srm-management">
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Tenant Verification</h4><p class="srm-feat-desc">Thorough background checks to ensure reliable and trustworthy occupancy for your property.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Rent Collection</h4><p class="srm-feat-desc">Collecting rent monthly and transferring it directly to your overseas bank account.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Regular Inspections</h4><p class="srm-feat-desc">Scheduled structural, plumbing, and electrical checks to maintain your property health.</p></div>
+                    <div class="srm-feature-card"><span class="srm-dot"></span><h4 class="srm-feat-title">Maintenance &amp; Repairs</h4><p class="srm-feat-desc">Coordinating plumbers, electricians, and cleaning services fully handled locally.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.srm-selectors{display:grid;grid-template-columns:repeat(3,1fr);border:0.5px solid #E0D8CC;}
+.srm-selector-card{padding:2rem 2.5rem;background:#fff;border-right:0.5px solid #E0D8CC;cursor:pointer;transition:background .25s;border-bottom:2px solid transparent;}
+.srm-selector-card:last-child{border-right:none;}
+.srm-selector-card.active{background:#F7F4EF;border-bottom:2px solid #C9A84C;}
+.srm-selector-card:hover:not(.active){background:#FAF8F4;}
+.srm-step{display:block;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:3px;color:#C9A84C;margin-bottom:.75rem;}
+.srm-card-name{font-family:'DM Sans',sans-serif;font-size:1.1rem;font-weight:700;color:#12121f;margin:0 0 .5rem 0;}
+.srm-card-desc{font-family:'DM Sans',sans-serif;font-size:.875rem;color:#7A7A8A;margin:0;line-height:1.5;}
+.srm-stage{border:0.5px solid #E0D8CC;border-top:none;}
+.srm-banner{height:190px;background:#12121f;display:flex;align-items:center;padding:0 3.5rem;position:relative;overflow:hidden;}
+.srm-banner::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(201,168,76,.07) 0%,transparent 60%);pointer-events:none;}
+.srm-banner-content{display:flex;flex-direction:column;gap:.75rem;transition:opacity .35s ease,transform .35s ease;}
+.srm-banner-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;}
+.srm-banner-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:#fff;line-height:1.15;margin:0;}
+.srm-features-area{background:#fff;}
+.srm-features-grid{display:none;grid-template-columns:1fr 1fr;opacity:0;transform:translateY(12px);transition:opacity .35s ease,transform .35s ease;}
+.srm-features-grid.active{display:grid;opacity:1;transform:translateY(0);}
+.srm-feature-card{padding:2.5rem 3rem;border-right:0.5px solid #EDE8E0;border-bottom:0.5px solid #EDE8E0;}
+.srm-feature-card:nth-child(even){border-right:none;}
+.srm-feature-card:nth-child(3),.srm-feature-card:nth-child(4){border-bottom:none;}
+.srm-dot{display:block;width:8px;height:8px;background:#C9A84C;border-radius:50%;margin-bottom:1.25rem;}
+.srm-feat-title{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;color:#12121f;margin:0 0 .75rem 0;}
+.srm-feat-desc{font-family:'DM Sans',sans-serif;font-size:.9rem;color:#6B6B7B;line-height:1.7;margin:0;}
+@media(max-width:900px){.srm-selectors{grid-template-columns:1fr;}.srm-selector-card{border-right:none;border-bottom:0.5px solid #E0D8CC;}.srm-features-grid{grid-template-columns:1fr;}.srm-feature-card{border-right:none;}.srm-feature-card:nth-child(4){border-bottom:none;}.srm-banner{height:auto;padding:2rem;}.srm-banner-title{font-size:2rem;}}
+@media(max-width:600px){.srm-selector-card{padding:1.5rem;}.srm-feature-card{padding:1.75rem;}.srm-banner-title{font-size:1.6rem;}}
+</style>
+
+<script>
+function switchSRM(clickedCard){
+    var targetId=clickedCard.dataset.target;
+    document.querySelectorAll('.srm-selector-card').forEach(function(c){c.classList.remove('active');});
+    clickedCard.classList.add('active');
+    var catKey=targetId.replace('srm-','');
+    document.querySelectorAll('.srm-banner-content').forEach(function(b){b.style.display='none';b.style.opacity='0';});
+    var banner=document.getElementById('srm-banner-'+catKey);
+    if(banner){banner.style.display='flex';requestAnimationFrame(function(){banner.style.opacity='1';});}
+    document.querySelectorAll('.srm-features-grid').forEach(function(g){g.classList.remove('active');g.style.display='none';});
+    var grid=document.getElementById(targetId);
+    if(grid){grid.style.display='grid';requestAnimationFrame(function(){grid.classList.add('active');});}
+}
+</script>
+
+
+<!-- FAQ Accordion (Premium Editorial Style) -->
+<section class="nri-faq">
+    <div class="container animate-on-scroll">
+        <h2 class="nri-section-title" style="text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h2>
+        
+        <div class="faq-container">
+            <details class="faq-item" open>
+                <summary class="faq-question">Who is an NRI?</summary>
+                <div class="faq-answer">
+                    An NRI is any citizen of India who is not residing in India and has resided in India for less than 182 days in the preceding financial year. NRIs have professional or other commitments which require them to live outside India for an indefinite period of time. However, NRIs still have opportunities to buy real estate in India.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">Who is a PIO?</summary>
+                <div class="faq-answer">A Person of Indian Origin (PIO) is a person of Indian origin or ancestry who was or whose ancestors were born in India or other nations with Indian ancestry but is not a citizen of India.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">Who is an OCI?</summary>
+                <div class="faq-answer">Overseas Citizenship of India (OCI) is a form of permanent residency available to people of Indian origin and their spouses which allows them to live and work in India indefinitely.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">Who can purchase property in India?</summary>
+                <div class="faq-answer">Under the general permission granted by RBI, an NRI or a PIO/OCI can freely purchase immovable property in India.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">What property can NRIs buy?</summary>
+                <div class="faq-answer">NRIs can purchase any residential or commercial property in India. However, they are not permitted to buy agricultural land, plantation property, or farmhouses without specific RBI approval.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">What Documents Do NRIs Need for Purchasing Property?</summary>
+                <div class="faq-answer">NRIs need a valid Passport, Address proof (India and abroad), PAN card, Passport size photographs, and NRE/NRO bank account statements.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">What are the steps for granting PoA?</summary>
+                <div class="faq-answer">The PoA must be drafted, signed by the NRI before a Notary Public or Indian Consulate in their country of residence, stamped, and then registered in India by the representative.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">How is Capital Gain Tax calculated for NRIs?</summary>
+                <div class="faq-answer">Short-term capital gains (property held < 24 months) are taxed as per the NRI's income slab. Long-term capital gains are taxed at 20% with indexation benefits. A TDS of 20% (plus surcharge) is deducted by the buyer on the sale amount unless a lower TDS certificate is obtained.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">Can income from rent be repatriated?</summary>
+                <div class="faq-answer">Yes, rental income can be freely repatriated abroad after the payment of applicable Indian taxes, subject to a limit of USD 1 million per financial year.</div>
+            </details>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function openNriTab(evt, tabName) {
+    // Hide all tab panes
+    var tabPanes = document.getElementsByClassName("nri-tab-pane");
+    for (var i = 0; i < tabPanes.length; i++) {
+        tabPanes[i].classList.remove("active");
+    }
+
+    // Remove active class from all buttons
+    var tabBtns = document.getElementsByClassName("nri-tab-btn");
+    for (var i = 0; i < tabBtns.length; i++) {
+        tabBtns[i].classList.remove("active");
+    }
+
+    // Show current tab pane and activate button
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+</script>
+{% endblock %}

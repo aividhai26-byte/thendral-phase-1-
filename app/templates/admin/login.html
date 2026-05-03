@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Thendral City Developers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'DM Sans', sans-serif;
+        background: #FFFFFF;
+        min-height: 100vh;
+        margin: 0;
+    }
+    .split-layout {
+        display: flex;
+        min-height: 100vh;
+        width: 100%;
+    }
+    .split-left {
+        flex: 1;
+        background-image: linear-gradient(rgba(40,40,43,0.6), rgba(40,40,43,0.85)), url('{{ url_for("static", filename="images/home1.jpg") }}');
+        background-size: cover;
+        background-position: center;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+    }
+    .split-left-content {
+        margin: auto 0;
+        max-width: 600px;
+    }
+    .split-left h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+    }
+    .split-left h1 span { color: #F3C623; }
+    .split-left p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.9);
+    }
+    .vidhai-credit {
+        margin-top: auto;
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.6);
+        padding-top: 2rem;
+    }
+    
+    .split-right {
+        flex: 0 0 450px;
+        background: #FAFAFA;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 3rem;
+    }
+    .login-wrapper {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .login-logo { margin-bottom: 2.5rem; }
+    .login-logo h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #28282B;
+        margin-bottom: 0.25rem;
+    }
+    .login-logo p {
+        font-size: 0.85rem;
+        color: #718096;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #4A5568;
+        margin-bottom: 0.5rem;
+    }
+    .form-control {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        color: #28282B;
+        background: #FFFFFF;
+        border: 1.5px solid #E2E8F0;
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+    .form-control:focus { border-color: #F3C623; }
+    .btn-login {
+        width: 100%;
+        padding: 1rem;
+        background: #28282B;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: background 0.3s;
+    }
+    .btn-login:hover { background: #1a1a1c; }
+    .flash-msg {
+        padding: 0.8rem 1rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        font-size: 0.88rem;
+        border-left: 3px solid;
+    }
+    .flash-danger { background: #FEF2F2; border-color: #E74C3C; color: #991B1B; }
+    .flash-success { background: #F0FDF4; border-color: #27AE60; color: #14532D; }
+    .back-link {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .back-link a {
+        color: #718096;
+        text-decoration: none;
+        font-size: 0.83rem;
+        transition: color 0.2s;
+    }
+    .back-link a:hover { color: #28282B; }
+
+    @media (max-width: 900px) {
+        .split-layout { flex-direction: column; }
+        .split-left { padding: 3rem 2rem; min-height: 400px; }
+        .split-right { flex: 1; width: 100%; padding: 3rem 1.5rem; }
+    }
+    </style>
+</head>
+<body>
+
+<div class="split-layout">
+    <div class="split-left">
+        <div class="split-left-content">
+            <h1>Thendral City <span>Developers</span></h1>
+            <p>"You are not just building houses, you are giving a home to a family which is a valuable life. We build spaces that nurture warmth, joy, and a lifetime of beautiful memories."</p>
+        </div>
+        <div class="vidhai-credit">
+            © 2026 Thendral City Developers. Powered by <strong>Vidhai AI Solutions</strong> • A bond built on trust and innovation.
+        </div>
+    </div>
+    
+    <div class="split-right">
+        <div class="login-wrapper">
+            <div class="login-logo">
+                <h2>Welcome Back 👋</h2>
+                <p>Sign in to your admin dashboard</p>
+            </div>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash-msg flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            
+            <form method="POST">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input class="form-control" type="text" name="username" required autofocus placeholder="e.g. admin">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input class="form-control" type="password" name="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-login">Sign In To Dashboard</button>
+            </form>
+            
+            <div class="back-link">
+                <a href="/">← Back to Website</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

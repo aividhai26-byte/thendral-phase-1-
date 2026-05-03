@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}500 - Server Error{% endblock %}
+
+{% block content %}
+<section class="section" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+    <div class="container text-center animate-on-scroll slide-up">
+        <h1 style="font-size: 120px; color: var(--color-error); margin-bottom: var(--spacing-md);">500</h1>
+        <h2 style="margin-bottom: var(--spacing-md);">Server Error</h2>
+        <p style="margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">Something went wrong on our end. Our team has been notified and we're working to fix the issue. Please try again later.</p>
+        <a href="/" class="btn btn-primary btn-lg btn-animate">Back to Home</a>
+    </div>
+</section>
+{% endblock %}

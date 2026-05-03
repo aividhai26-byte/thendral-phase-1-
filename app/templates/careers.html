@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+
+{% block title %}Careers - Thendral City Developers{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===========================
+   CAREERS PAGE — Corporate Premium
+=========================== */
+
+/* Hero Section */
+.car-hero {
+    position: relative;
+    height: 45vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(40, 40, 43, 0.7), rgba(40, 40, 43, 0.85)), url('{{ url_for('static', filename='images/home3.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.car-hero-content {
+    max-width: 800px;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.car-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.car-hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Common Section Styles */
+.car-section {
+    padding: 6rem 0;
+    background: #FFFFFF;
+}
+
+.car-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.car-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #28282B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.car-section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #F3C623;
+    margin: 1rem auto 0;
+}
+
+/* Why Work With Us */
+.car-split {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.car-split-content {
+    flex: 1;
+}
+
+.car-split-image {
+    flex: 1;
+}
+
+.car-split-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.car-benefit-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.car-benefit-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #4A5568;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.car-benefit-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #F3C623;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.car-benefit-list strong {
+    color: #28282B;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+/* Application Form Section */
+.car-form-section {
+    background: #fff;
+    padding: 6rem 0;
+}
+
+.car-form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 4rem;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.car-form-row {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.car-form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-form-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #28282B;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.car-form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #4A5568;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.car-form-control:focus {
+    outline: none;
+    border-color: #F3C623;
+    box-shadow: 0 0 0 3px rgba(243, 198, 35, 0.1);
+}
+
+.car-btn-submit {
+    display: inline-block;
+    background: #F3C623;
+    color: #fff;
+    border: none;
+    padding: 1.2rem 3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.car-btn-submit:hover {
+    background: #D4A017;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .car-split { flex-direction: column; }
+    .car-form-row { flex-direction: column; gap: 1rem; }
+}
+
+@media (max-width: 600px) {
+    .car-hero-title { font-size: 2.8rem; }
+    .car-form-wrapper { padding: 2rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<section class="car-hero">
+    <div class="car-hero-content animate-on-scroll">
+        <h1 class="car-hero-title">Build Your Future</h1>
+        <p class="car-hero-subtitle">Join Thendral City Developers and be part of a team that shapes the skyline and builds excellence.</p>
+    </div>
+</section>
+
+<!-- Why Work With Us -->
+<section class="car-section">
+    <div class="container">
+        <div class="car-split animate-on-scroll">
+            <div class="car-split-content">
+                <h2 class="car-section-title" style="text-align: left;">Why Work With Us?</h2>
+                <p style="font-family: 'DM Sans'; color: #4A5568; line-height: 1.8; margin-bottom: 2rem;">
+                    At Thendral City Developers, we believe our people are our greatest asset. With a dynamic work environment, we nurture talent and offer paths where your career can truly flourish.
+                </p>
+                <ul class="car-benefit-list">
+                    <li>
+                        <strong>Growth Opportunities</strong>
+                        Career advancement paths with regular training and skill development programs.
+                    </li>
+                    <li>
+                        <strong>Competitive Compensation</strong>
+                        Industry-leading salary packages with performance-based incentives and comprehensive health insurance.
+                    </li>
+                    <li>
+                        <strong>Work-Life Balance</strong>
+                        Respect for personal time with flexible working hours and highly supportive management.
+                    </li>
+                </ul>
+            </div>
+            <div class="car-split-image">
+                <img src="{{ url_for('static', filename='images/home1.jpg') }}" alt="Team Environment">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form -->
+<section class="car-form-section" id="apply">
+    <div class="container">
+        <div class="car-section-header animate-on-scroll">
+            <h2 class="car-section-title">Join Our Team</h2>
+            <p style="font-family: 'DM Sans'; color: #4A5568; max-width: 600px; margin: 0 auto;">
+                We are always looking for passionate architects, engineers, and professionals. Submit your details below and our HR team will reach out to you.
+            </p>
+        </div>
+
+        <div class="car-form-wrapper animate-on-scroll">
+            <form action="#" method="POST" onsubmit="alert('Application submitted successfully! Our HR team will contact you shortly.'); return false;">
+                
+                <div class="car-form-row">
+                    <div class="car-form-group">
+                        <label class="car-form-label">First Name *</label>
+                        <input type="text" class="car-form-control" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label class="car-form-label">Last Name *</label>
+                        <input type="text" class="car-form-control" required>
+                    </div>
+                </div>
+
+                <div class="car-form-row">
+                    <div class="car-form-group">
+                        <label class="car-form-label">Email Address *</label>
+                        <input type="email" class="car-form-control" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label class="car-form-label">Phone Number *</label>
+                        <input type="tel" class="car-form-control" required>
+                    </div>
+                </div>
+
+                <div class="car-form-row">
+                    <div class="car-form-group" style="flex: unset; width: 100%;">
+                        <label class="car-form-label">Area of Expertise / Role Desired *</label>
+                        <select class="car-form-control" required>
+                            <option value="">Select an Area</option>
+                            <option value="engineering">Civil Engineering / Site Supervision</option>
+                            <option value="architecture">Architecture & Design</option>
+                            <option value="sales">Sales & Marketing</option>
+                            <option value="hr">Human Resources</option>
+                            <option value="finance">Finance & Accounts</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="car-form-row">
+                    <div class="car-form-group" style="flex: unset; width: 100%;">
+                        <label class="car-form-label">LinkedIn Profile URL</label>
+                        <input type="url" class="car-form-control" placeholder="https://linkedin.com/in/...">
+                    </div>
+                </div>
+
+                <div class="car-form-row">
+                    <div class="car-form-group" style="flex: unset; width: 100%;">
+                        <label class="car-form-label">Cover Letter / Message</label>
+                        <textarea class="car-form-control" rows="5" placeholder="Tell us about your experience and why you want to join us..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="car-btn-submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

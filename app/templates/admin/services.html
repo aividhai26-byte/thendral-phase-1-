@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Services - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #FFFFFF; color: #28282B; }
+    .admin-header { background: #28282B; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .admin-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #F3C623; font-weight: 700; }
+    .admin-header nav { display: flex; gap: 2rem; }
+    .admin-header nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .admin-header nav a:hover { color: #F3C623; }
+    .admin-main { max-width: 1100px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; }
+    .btn-add { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #F3C623; color: #fff; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; transition: background 0.3s; }
+    .btn-add:hover { background: #D4A017; }
+    .flash-msg { padding: 0.8rem 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.88rem; border-left: 3px solid; }
+    .flash-success { background: #F0FDF4; border-color: #27AE60; color: #14532D; }
+    .flash-danger { background: #FEF2F2; border-color: #E74C3C; color: #991B1B; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .service-card { background: #fff; border-radius: 6px; border: 1px solid #E2E8F0; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: #28282B; margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.85rem; color: #4A5568; margin-bottom: 1rem; line-height: 1.5; }
+    .card-actions { display: flex; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid #E2E8F0; }
+    .btn-edit { padding: 0.4rem 0.9rem; border: 1.5px solid #E2E8F0; border-radius: 3px; color: #4A5568; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s; }
+    .btn-edit:hover { border-color: #F3C623; color: #F3C623; }
+    .btn-del { padding: 0.4rem 0.75rem; background: transparent; border: 1.5px solid #E2E8F0; border-radius: 3px; color: #E74C3C; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-del:hover { border-color: #E74C3C; background: #FEF2F2; }
+    </style>
+</head>
+<body>
+<header class="admin-header">
+    <h1>⚙️ TM Construction Admin</h1>
+    <nav>
+        <a href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('admin.projects_list') }}">Projects</a>
+        <a href="{{ url_for('admin.services_list') }}">Services</a>
+        <a href="{{ url_for('admin.messages_list') }}">Messages</a>
+        <a href="/" target="_blank">View Site</a>
+        <a href="{{ url_for('admin.logout') }}">Logout</a>
+    </nav>
+</header>
+<main class="admin-main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for cat, msg in messages %}
+    <div class="flash-msg flash-{{ cat }}">{{ msg }}</div>
+    {% endfor %}{% endif %}{% endwith %}
+
+    <div class="page-header">
+        <div class="page-title">Manage Services</div>
+        <a href="{{ url_for('admin.service_new') }}" class="btn-add">+ Add Service</a>
+    </div>
+    <div class="services-grid">
+        {% for service in services %}
+        <div class="service-card">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description | truncate(80) }}</p>
+            <div class="card-actions">
+                <a href="{{ url_for('admin.service_edit', id=service.id) }}" class="btn-edit">Edit</a>
+                <form method="POST" action="{{ url_for('admin.service_delete', id=service.id) }}" onsubmit="return confirm('Delete?')">
+                    <button type="submit" class="btn-del">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+</body>
+</html>

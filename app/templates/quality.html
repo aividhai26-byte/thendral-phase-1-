@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}Quality Policy - Thendral City Developers{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===========================
+   QUALITY PAGE — Corporate Premium
+=========================== */
+
+/* Hero Banner */
+.q-hero {
+    position: relative;
+    height: 45vh;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(40, 40, 43, 0.7), rgba(40, 40, 43, 0.85)), url('{{ url_for('static', filename='images/home3.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.q-hero-content {
+    max-width: 800px;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.q-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.q-hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Policy Section */
+.q-main {
+    background: #FFFFFF;
+    padding: 6rem 0 8rem;
+}
+
+.q-policy-header {
+    margin-bottom: 4rem;
+    max-width: 900px;
+}
+
+.q-policy-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #28282B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.q-policy-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: #F3C623;
+}
+
+.q-policy-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #4A5568;
+    line-height: 1.8;
+}
+
+/* Icons Grid */
+.q-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem 2rem;
+    text-align: center;
+}
+
+.q-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.q-card:hover {
+    transform: translateY(-5px);
+}
+
+.q-icon {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 2rem;
+    object-fit: contain;
+}
+
+.q-card-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #28282B;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+/* Small underline for card titles */
+.q-card-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: #F3C623;
+    opacity: 0.5;
+}
+
+.q-card-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #4A5568;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .q-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .q-hero-title { font-size: 2.8rem; }
+    .q-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .q-policy-title { font-size: 1.8rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<section class="q-hero">
+    <div class="q-hero-content animate-on-scroll">
+        <h1 class="q-hero-title">Quality Assurance</h1>
+        <p class="q-hero-subtitle">Committed to excellence, safety, and sustainable building practices across every project.</p>
+    </div>
+</section>
+
+<!-- Policy Content -->
+<section class="q-main">
+    <div class="container">
+        
+        <div class="q-policy-header animate-on-scroll">
+            <h2 class="q-policy-title">Quality, Health & Safety Policy</h2>
+            <p class="q-policy-text">
+                We at Thendral City Developers commit to achieve customer and employee satisfaction by continual improvement of quality in construction, on-time completion of projects, and transparency in service with required engineering inputs.
+            </p>
+        </div>
+
+        <div class="q-grid">
+            
+            <!-- Item 1 -->
+            <div class="q-card animate-on-scroll">
+                <img src="{{ url_for('static', filename='images/quality/healthy environment.png') }}" alt="Healthy Environment" class="q-icon">
+                <h3 class="q-card-title">Healthy Environment</h3>
+                <p class="q-card-desc">To maintain a safe and healthy environment.</p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="q-card animate-on-scroll" style="transition-delay: 0.1s;">
+                <img src="{{ url_for('static', filename='images/quality/safety and health.png') }}" alt="Safety and Health" class="q-icon">
+                <h3 class="q-card-title">Safety and Health</h3>
+                <p class="q-card-desc">To enhance awareness among the employees on safety and health.</p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="q-card animate-on-scroll" style="transition-delay: 0.2s;">
+                <img src="{{ url_for('static', filename='images/quality/accidents and emergencies.png') }}" alt="Accidents and Emergencies" class="q-icon">
+                <h3 class="q-card-title">Accidents and Emergencies</h3>
+                <p class="q-card-desc">To prevent accidents and emergencies.</p>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="q-card animate-on-scroll">
+                <img src="{{ url_for('static', filename='images/quality/health and injury.png') }}" alt="Health and Injury" class="q-icon">
+                <h3 class="q-card-title">Health and Injury</h3>
+                <p class="q-card-desc">To prevention of ill health and injury.</p>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="q-card animate-on-scroll" style="transition-delay: 0.1s;">
+                <img src="{{ url_for('static', filename='images/quality/legal requirements.png') }}" alt="Legal Requirements" class="q-icon">
+                <h3 class="q-card-title">Legal Requirements</h3>
+                <p class="q-card-desc">Compliance to applicable legal and other requirements.</p>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="q-card animate-on-scroll" style="transition-delay: 0.2s;">
+                <img src="{{ url_for('static', filename='images/quality/intersted parties requirements.png') }}" alt="Interested Parties Requirement" class="q-icon">
+                <h3 class="q-card-title">Interested Parties Requirement</h3>
+                <p class="q-card-desc">Considering Internal, External issues and interested parties requirement.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

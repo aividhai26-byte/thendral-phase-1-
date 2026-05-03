@@ -1,0 +1,497 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Thendral City Developers{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section - Full Screen Cinematic Slideshow -->
+<section class="hero-section" id="hero">
+    <div class="hero-slideshow">
+        <div class="hero-slide active" data-slide="0">
+            <div class="slide-bg"
+                style="background-image: url('{{ url_for('static', filename='images/home/6.jpg') }}');"></div>
+        </div>
+        <div class="hero-slide" data-slide="1">
+            <div class="slide-bg"
+                style="background-image: url('{{ url_for('static', filename='images/home/8.jpg') }}');"></div>
+        </div>
+        <div class="hero-slide" data-slide="2">
+            <div class="slide-bg"
+                style="background-image: url('{{ url_for('static', filename='images/home/9.jpg') }}');"></div>
+        </div>
+        <div class="hero-slide" data-slide="3">
+            <div class="slide-bg"
+                style="background-image: url('{{ url_for('static', filename='images/home/10.jpg') }}');"></div>
+        </div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content-wrapper">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <h1 class="hero-title">
+                        Building Trusted<br>
+                        <span class="hero-title-italic">Most Trusted Spaces</span>
+                    </h1>
+                    <p class="hero-quote">Quality construction that stands the test of time</p>
+                    <p class="hero-subtitle">12+ years of excellence across 100+ completed projects</p>
+                    <div class="hero-buttons">
+                        <a href="/contact" class="hero-btn hero-btn-primary">GET FREE CONSULTATION</a>
+                        <a href="/projects" class="hero-btn hero-btn-outline">VIEW OUR PROJECTS</a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-stats-card">
+                        <div class="hero-stat-item">
+                            <div class="hero-stat-number">12+</div>
+                            <div class="hero-stat-label">Years Experience</div>
+                        </div>
+                        <div class="hero-stat-item">
+                            <div class="hero-stat-number">100+</div>
+                            <div class="hero-stat-label">Projects Completed</div>
+                        </div>
+                        <div class="hero-stat-item">
+                            <div class="hero-stat-number">750+</div>
+                            <div class="hero-stat-label">Skilled Workers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-dots">
+        <div class="hero-dot active" data-slide="0"></div>
+        <div class="hero-dot" data-slide="1"></div>
+        <div class="hero-dot" data-slide="2"></div>
+        <div class="hero-dot" data-slide="3"></div>
+    </div>
+</section>
+
+<!-- Stats Strip - Slim Horizontal -->
+<section class="stats-strip" id="statsStrip">
+    <div class="container">
+        <div class="stats-strip-grid">
+            <div class="stat-strip-item">
+                <div class="stat-strip-number" data-count="12">0</div>
+                <div class="stat-strip-label">Years of Experience</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-strip-item">
+                <div class="stat-strip-number" data-count="100">0</div>
+                <div class="stat-strip-label">Projects Completed</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-strip-item">
+                <div class="stat-strip-number" data-count="750">0</div>
+                <div class="stat-strip-label">Skilled Workers</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-strip-item">
+                <div class="stat-strip-number" data-count="50">0</div>
+                <div class="stat-strip-label">Ongoing Projects</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section - Split Layout -->
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-left">
+                <div class="about-image-wrapper">
+                    <img src="{{ url_for('static', filename='images/workersonsite.jpg') }}" alt="Workers on Site"
+                        class="about-image">
+                    <div class="about-badge">Since 2012</div>
+                </div>
+            </div>
+            <div class="about-right">
+                <span class="section-label">ABOUT THENDRAL CITY DEVELOPERS</span>
+                <h2 class="about-title">We Build More Than Structures — We Build Trust</h2>
+                <div class="about-content">
+                    <p>Thendral City Developers is a leading construction company committed to delivering quality
+                        residential and commercial projects with transparency and craftsmanship.</p>
+                    <p>With 12+ years of experience in the construction industry, we have successfully completed 100+
+                        projects, building a reputation for excellence, reliability, and customer satisfaction.</p>
+                    <p>Our team of 750+ skilled professionals brings expertise and dedication to every project, ensuring
+                        that each structure we build meets the highest standards of quality and safety.</p>
+                </div>
+                <div class="about-divider"></div>
+                <div class="about-highlights">
+                    <div class="about-highlight-item">
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>On-Time Delivery Guaranteed</span>
+                    </div>
+                    <div class="about-highlight-item">
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>RERA Registered Projects</span>
+                    </div>
+                </div>
+                <a href="/residential" class="about-btn">LEARN MORE ABOUT US</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section - Clean Minimal Design -->
+<section class="services-section-clean" id="services">
+    <div class="container">
+        <div class="services-header-clean">
+            <span class="section-label-clean">WHAT WE OFFER</span>
+            <h2 class="services-title-clean">Our Construction Services</h2>
+            <p class="services-subtitle-clean">Comprehensive construction solutions tailored to your needs</p>
+        </div>
+        <div class="services-grid-clean">
+            <!-- Item 1: Residential Construction -->
+            <div class="service-item-clean" data-service="residential">
+                <div class="service-item-header">
+                    <img src="{{ url_for('static', filename='images/Residential icon golden.jpg') }}" alt="Residential"
+                        class="service-icon-clean">
+                    <h3 class="service-item-title">Residential Construction</h3>
+                </div>
+                <div class="service-divider-clean"></div>
+                <p class="service-item-description">Premium villas, apartments and residential complexes built to the
+                    highest standards with quality materials.</p>
+            </div>
+
+            <!-- Item 2: Commercial Construction -->
+            <div class="service-item-clean" data-service="commercial">
+                <div class="service-item-header">
+                    <img src="{{ url_for('static', filename='images/Commercial icon golden.jpg') }}" alt="Commercial"
+                        class="service-icon-clean">
+                    <h3 class="service-item-title">Commercial Construction</h3>
+                </div>
+                <div class="service-divider-clean"></div>
+                <p class="service-item-description">Modern office spaces, retail centers and commercial buildings
+                    designed for business excellence.</p>
+            </div>
+
+            <!-- Item 3: Renovation and Remodeling -->
+            <div class="service-item-clean" data-service="renovation">
+                <div class="service-item-header">
+                    <img src="{{ url_for('static', filename='images/Renovation and Remodeling icon.jpg') }}"
+                        alt="Renovation" class="service-icon-clean">
+                    <h3 class="service-item-title">Renovation and Remodeling</h3>
+                </div>
+                <div class="service-divider-clean"></div>
+                <p class="service-item-description">Complete renovation services that transform existing spaces into
+                    modern and functional environments.</p>
+            </div>
+
+            <!-- Item 4: Project Management -->
+            <div class="service-item-clean" data-service="project-management">
+                <div class="service-item-header">
+                    <img src="{{ url_for('static', filename='images/Project Management icon.jpg') }}"
+                        alt="Project Management" class="service-icon-clean">
+                    <h3 class="service-item-title">Project Management</h3>
+                </div>
+                <div class="service-divider-clean"></div>
+                <p class="service-item-description">End-to-end project management ensuring timely delivery and quality
+                    at every stage.</p>
+            </div>
+
+            <!-- Item 5: NRI Services -->
+            <div class="service-item-clean" data-service="nri">
+                <div class="service-item-header">
+                    <img src="{{ url_for('static', filename='images/NRI Services icon.jpg') }}" alt="NRI Services"
+                        class="service-icon-clean">
+                    <h3 class="service-item-title">NRI Services</h3>
+                </div>
+                <div class="service-divider-clean"></div>
+                <p class="service-item-description">Dedicated services for NRI clients to build and manage their dream
+                    projects remotely.</p>
+            </div>
+
+            <!-- Item 6: Interior Design -->
+            <div class="service-item-clean" data-service="interior">
+                <div class="service-item-header">
+                    <svg class="service-icon-clean service-icon-svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4h8v4M10 9a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
+                    </svg>
+                    <h3 class="service-item-title">Interior Design</h3>
+                </div>
+                <div class="service-divider-clean"></div>
+                <p class="service-item-description">Beautiful and functional interior design solutions that bring your
+                    living spaces to life.</p>
+            </div>
+        </div>
+        <div class="services-cta-clean">
+            <a href="/services" class="services-cta-btn-clean">VIEW ALL SERVICES</a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section - Swiper Slider -->
+<section class="projects-section" id="projects">
+    <div class="container">
+        <div class="projects-header">
+            <span class="section-label">OUR PORTFOLIO</span>
+            <h2 class="projects-title">Featured Projects</h2>
+        </div>
+        <div class="projects-swiper">
+            <div class="swiper project-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <div class="project-slide-bg"
+                                style="background-image: url('{{ url_for('static', filename='images/7243a6b06f78c4fcae7eea862cca65e5.jpg') }}');">
+                            </div>
+                            <div class="project-slide-overlay"></div>
+                            <div class="project-slide-content">
+                                <h3 class="project-slide-title">City Center Complex</h3>
+                                <div class="project-slide-meta">
+                                    <span class="project-slide-type">Commercial</span>
+                                    <span class="project-slide-location">Tiruppur</span>
+                                    <span class="project-slide-status">Completed</span>
+                                </div>
+                                <a href="/projects" class="project-slide-btn">VIEW PROJECT</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <div class="project-slide-bg"
+                                style="background-image: url('{{ url_for('static', filename='images/480251f2e693416b4dc99b5b3ea6e699.jpg') }}');">
+                            </div>
+                            <div class="project-slide-overlay"></div>
+                            <div class="project-slide-content">
+                                <h3 class="project-slide-title">Green Valley Apartments</h3>
+                                <div class="project-slide-meta">
+                                    <span class="project-slide-type">Residential</span>
+                                    <span class="project-slide-location">Tiruppur</span>
+                                    <span class="project-slide-status">Completed</span>
+                                </div>
+                                <a href="/projects" class="project-slide-btn">VIEW PROJECT</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <div class="project-slide-bg"
+                                style="background-image: url('{{ url_for('static', filename='images/e8be1c833e1db3d91049cfe8fde9e3d8.jpg') }}');">
+                            </div>
+                            <div class="project-slide-overlay"></div>
+                            <div class="project-slide-content">
+                                <h3 class="project-slide-title">Industrial Warehouse</h3>
+                                <div class="project-slide-meta">
+                                    <span class="project-slide-type">Industrial</span>
+                                    <span class="project-slide-location">India</span>
+                                    <span class="project-slide-status">Completed</span>
+                                </div>
+                                <a href="/projects" class="project-slide-btn">VIEW PROJECT</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <div class="project-slide-bg"
+                                style="background-image: url('{{ url_for('static', filename='images/Luxury apartment exterior — clean modern building, blue skyLandscape.jpg') }}');">
+                            </div>
+                            <div class="project-slide-overlay"></div>
+                            <div class="project-slide-content">
+                                <h3 class="project-slide-title">Luxury Residential Township</h3>
+                                <div class="project-slide-meta">
+                                    <span class="project-slide-type">Residential</span>
+                                    <span class="project-slide-location">Tiruppur</span>
+                                    <span class="project-slide-status">Ongoing</span>
+                                </div>
+                                <a href="/projects" class="project-slide-btn">VIEW PROJECT</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <div class="project-slide-bg"
+                                style="background-image: url('{{ url_for('static', filename='images/Luxury apartment exterior — clean modern building, blue skyLandscape4.jpg') }}');">
+                            </div>
+                            <div class="project-slide-overlay"></div>
+                            <div class="project-slide-content">
+                                <h3 class="project-slide-title">Modern Living Residences</h3>
+                                <div class="project-slide-meta">
+                                    <span class="project-slide-type">Residential</span>
+                                    <span class="project-slide-location">India</span>
+                                    <span class="project-slide-status">Completed</span>
+                                </div>
+                                <a href="/projects" class="project-slide-btn">VIEW PROJECT</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-slide">
+                            <div class="project-slide-bg"
+                                style="background-image: url('{{ url_for('static', filename='images/f7505f10816dc18dae943ab51e98ac10.jpg') }}');">
+                            </div>
+                            <div class="project-slide-overlay"></div>
+                            <div class="project-slide-content">
+                                <h3 class="project-slide-title">Premium Apartments Phase 2</h3>
+                                <div class="project-slide-meta">
+                                    <span class="project-slide-type">Residential</span>
+                                    <span class="project-slide-location">Tiruppur</span>
+                                    <span class="project-slide-status">Ongoing</span>
+                                </div>
+                                <a href="/projects" class="project-slide-btn">VIEW PROJECT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-navigation">
+                    <div class="swiper-button-prev project-swiper-prev"></div>
+                    <div class="swiper-button-next project-swiper-next"></div>
+                </div>
+                <div class="swiper-pagination project-swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="projects-cta">
+            <a href="/projects" class="cta-btn">VIEW ALL PROJECTS</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section - Swiper Carousel -->
+<section class="testimonials-section" id="testimonials">
+    <div class="container">
+        <div class="testimonials-header">
+            <span class="section-label">CLIENT TESTIMONIALS</span>
+            <h2 class="testimonials-title">What Our Clients Say</h2>
+        </div>
+        <div class="testimonials-swiper">
+            <div class="swiper testimonial-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-slide">
+                            <div class="testimonial-quote-icon">"</div>
+                            <p class="testimonial-text">Thendral City Developers delivered our commercial complex on
+                                time and with exceptional quality. Their attention to detail is truly remarkable.</p>
+                            <div class="testimonial-author">
+                                <span class="testimonial-name">Rajesh Kumar</span>
+                                <span class="testimonial-title">CEO, Tech Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-slide">
+                            <div class="testimonial-quote-icon">"</div>
+                            <p class="testimonial-text">We hired them for our home renovation and could not be happier.
+                                Professional team, transparent pricing and excellent workmanship.</p>
+                            <div class="testimonial-author">
+                                <span class="testimonial-name">Priya Sharma</span>
+                                <span class="testimonial-title">Homeowner, Tiruppur</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-slide">
+                            <div class="testimonial-quote-icon">"</div>
+                            <p class="testimonial-text">Their industrial warehouse construction was completed ahead of
+                                schedule. Highly recommend for any commercial project.</p>
+                            <div class="testimonial-author">
+                                <span class="testimonial-name">Arun Patel</span>
+                                <span class="testimonial-title">Managing Director, Logistics Company</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination testimonial-swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Section - Asymmetric Layout -->
+<section class="news-section" id="news">
+    <div class="container">
+        <div class="news-header">
+            <span class="section-label">LATEST UPDATES</span>
+            <h2 class="news-title">News & Updates</h2>
+        </div>
+        <div class="news-grid">
+            <div class="news-main">
+                <div class="news-card news-card-large">
+                    <div class="news-card-image">
+                        <img src="{{ url_for('static', filename='images/home6.jpg') }}" alt="City Center Complex">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-badge">PROJECT UPDATE</span>
+                        <h3 class="news-card-title">City Center Complex Reaches Final Phase</h3>
+                        <p class="news-card-excerpt">Our flagship project enters the final construction phase with
+                            completion expected next month. The commercial complex features modern amenities and
+                            sustainable design.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="news-side">
+                <div class="news-card news-card-small">
+                    <div class="news-card-image">
+                        <img src="{{ url_for('static', filename='images/home2.jpg') }}" alt="Excellence Award">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-badge">COMPANY NEWS</span>
+                        <h3 class="news-card-title">Thendral City Developers Wins Excellence Award</h3>
+                        <p class="news-card-excerpt">Recognized for outstanding contribution to sustainable construction
+                            practices in the region.</p>
+                    </div>
+                </div>
+                <div class="news-card news-card-small">
+                    <div class="news-card-image">
+                        <img src="{{ url_for('static', filename='images/workersonsite.jpg') }}"
+                            alt="Green Valley Project">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-badge">NEW PROJECT</span>
+                        <h3 class="news-card-title">Green Valley Residential Project Launched</h3>
+                        <p class="news-card-excerpt">New eco-friendly residential project announced with modern
+                            amenities and sustainable design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="news-cta">
+            <a href="/news" class="cta-btn">VIEW ALL NEWS</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Banner Section -->
+<section class="cta-section" id="cta">
+    <div class="cta-bg"
+        style="background-image: url('{{ url_for('static', filename='images/1 concrete marble texture.jpg') }}');">
+    </div>
+    <div class="cta-overlay"></div>
+    <div class="container">
+        <div class="cta-content">
+            <div class="cta-left">
+                <h2 class="cta-title">Ready to Build Your Dream Project?</h2>
+                <p class="cta-subtitle">Contact us today. Our team in Tiruppur is ready to bring your vision to life.
+                </p>
+                <a href="/contact" class="cta-btn cta-btn-large">GET FREE CONSULTATION</a>
+            </div>
+            <div class="cta-right">
+                <div class="cta-phone">
+                    <span class="cta-phone-label">Call Us Now</span>
+                    <span class="cta-phone-number">+91 82482 53662</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

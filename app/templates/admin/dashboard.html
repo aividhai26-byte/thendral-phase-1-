@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - TM Construction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #FFFFFF; color: #28282B; }
+    .admin-header { background: #28282B; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .admin-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #F3C623; font-weight: 700; }
+    .admin-header nav { display: flex; gap: 2rem; }
+    .admin-header nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .admin-header nav a:hover { color: #F3C623; }
+    .admin-main { max-width: 1100px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: #28282B; margin-bottom: 2rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .stat-card { background: #fff; border-radius: 6px; border: 1px solid #E2E8F0; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 700; color: #F3C623; line-height: 1; margin-bottom: 0.4rem; }
+    .stat-label { font-size: 0.8rem; color: #718096; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .panel { background: #fff; border-radius: 6px; border: 1px solid #E2E8F0; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .panel-header { background: #28282B; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .panel-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; font-weight: 700; }
+    .panel-header a { font-size: 0.75rem; color: #F3C623; text-decoration: none; font-weight: 600; }
+    .panel-body { padding: 1rem; }
+    .message-item { padding: 0.75rem; border-bottom: 1px solid #E2E8F0; }
+    .message-item:last-child { border-bottom: none; }
+    .msg-name { font-weight: 600; font-size: 0.9rem; color: #28282B; }
+    .msg-subject { font-size: 0.82rem; color: #4A5568; margin-top: 0.2rem; }
+    .msg-time { font-size: 0.75rem; color: #718096; margin-top: 0.15rem; }
+    .quick-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 1rem; }
+    .quick-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1rem; background: #FFFFFF; border-radius: 4px; border: 1px solid #E2E8F0; text-decoration: none; color: #28282B; font-size: 0.88rem; font-weight: 600; transition: all 0.2s; }
+    .quick-link:hover { border-color: #F3C623; background: #FFFFFF; }
+    .quick-link-icon { font-size: 1.3rem; }
+    .flash-msg { padding: 0.8rem 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.88rem; border-left: 3px solid; }
+    .flash-success { background: #F0FDF4; border-color: #27AE60; color: #14532D; }
+    .flash-info { background: #EFF6FF; border-color: #3B82F6; color: #1E3A8A; }
+    </style>
+</head>
+<body>
+<header class="admin-header">
+    <h1>⚙️ TM Construction Admin</h1>
+    <nav>
+        <a href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('admin.projects_list') }}">Projects</a>
+        <a href="/" target="_blank">View Site</a>
+        <a href="{{ url_for('admin.logout') }}">Logout</a>
+    </nav>
+</header>
+<main class="admin-main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for cat, msg in messages %}
+    <div class="flash-msg flash-{{ cat }}">{{ msg }}</div>
+    {% endfor %}{% endif %}{% endwith %}
+
+    <div class="page-title">Dashboard</div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">{{ stats.current_projects }}</div>
+            <div class="stat-label">Current Projects</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ stats.completed_projects }}</div>
+            <div class="stat-label">Completed Projects</div>
+        </div>
+    </div>
+
+    <div class="content-grid" style="grid-template-columns: 1fr;">
+
+        <div class="panel">
+            <div class="panel-header"><h3>Quick Actions</h3></div>
+            <div class="quick-links">
+                <a href="{{ url_for('admin.project_new') }}" class="quick-link">
+                    <span class="quick-link-icon">🏗️</span>Add Project
+                </a>
+                <a href="{{ url_for('admin.projects_list') }}" class="quick-link">
+                    <span class="quick-link-icon">📋</span>All Projects
+                </a>
+                <a href="/projects" target="_blank" class="quick-link">
+                    <span class="quick-link-icon">🌐</span>View Projects Page
+                </a>
+                <a href="/" target="_blank" class="quick-link">
+                    <span class="quick-link-icon">🏠</span>View Website
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

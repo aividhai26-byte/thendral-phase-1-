@@ -1,0 +1,676 @@
+{% extends "base.html" %}
+
+{% block title %}Casagrand Estoria - Premium Residential Villas{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===========================
+   RESIDENTIAL PAGE — Corporate Premium
+=========================== */
+
+body {
+    background-color: #FFFFFF; /* Warm off-white */
+}
+
+/* 1. HERO SECTION */
+.res-hero {
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    background-image: linear-gradient(to top, rgba(40, 40, 43, 0.95) 0%, rgba(40, 40, 43, 0.2) 100%), url('{{ url_for('static', filename='images/home4.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding-bottom: 4rem;
+}
+
+.res-hero-content {
+    width: 100%;
+}
+
+.res-status-badge {
+    display: inline-block;
+    background: #25D366;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.res-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.res-hero-location {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #F3C623;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.res-stats-bar {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(243, 198, 35, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    gap: 3rem;
+}
+
+.res-stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.res-stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.res-stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* 2. SECTION HEADERS */
+.res-section {
+    padding: 6rem 0;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.res-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.res-section-title::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: #F3C623;
+}
+
+/* 3. UNIT TYPES & FLOOR PLANS */
+.unit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.unit-card {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-top: 3px solid #F3C623;
+    padding: 2.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.unit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.unit-type {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 0.5rem;
+}
+
+.unit-area {
+    font-family: 'DM Sans', sans-serif;
+    color: #4A5568;
+    margin-bottom: 1.5rem;
+}
+
+.unit-price {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #F3C623;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.res-btn-outline {
+    display: inline-block;
+    border: 1px solid #28282B;
+    color: #28282B;
+    padding: 0.8rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.res-btn-outline:hover {
+    background: #28282B;
+    color: #fff;
+}
+
+/* 4. AMENITIES */
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem 2rem;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.amenity-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(243, 198, 35, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F3C623;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.amenity-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #28282B;
+    font-size: 0.95rem;
+}
+
+/* 5. SPECIFICATIONS */
+.specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.spec-block {
+    margin-bottom: 2rem;
+}
+
+.spec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #28282B;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #F3C623;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.spec-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #4A5568;
+    line-height: 1.7;
+}
+
+/* 6. DIRECTION-AWARE GALLERY */
+.res-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    height: 350px;
+    background: #28282B;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(40, 40, 43, 0.85); /* Dark charcoal tint */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    /* Border requested in the prompt logic */
+    border: 4px solid #F3C623;
+    box-sizing: border-box;
+    /* Direction-aware transition will be managed by JS */
+    transform: translateY(-100%); 
+}
+
+.overlay-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.overlay-desc {
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* 7. PROGRESS & PAYMENT */
+.split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #E2E8F0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #F3C623;
+    width: 80%; /* Example completion */
+}
+
+@media (max-width: 900px) {
+    .res-hero { height: auto; padding-top: 6rem; padding-bottom: 4rem; align-items: flex-start; }
+    .res-stats-bar { flex-wrap: wrap; gap: 1.5rem; }
+    .unit-grid, .res-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+    .specs-grid, .split-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .res-hero { padding-top: 4rem; padding-bottom: 3rem; }
+    .res-hero-title { font-size: 3rem; }
+    .unit-grid, .res-gallery-grid, .amenities-grid { grid-template-columns: 1fr; }
+    .res-stats-bar { flex-direction: column; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO SECTION -->
+<section class="res-hero">
+    <div class="container">
+        <div class="res-hero-content animate-on-scroll">
+            <span class="res-status-badge">Ongoing Project</span>
+            <h1 class="res-hero-title">Casagrand Estoria</h1>
+            <div class="res-hero-location">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Off Avinashi Road, Coimbatore
+            </div>
+            
+            <div class="res-stats-bar">
+                <div class="res-stat-item">
+                    <span class="res-stat-value">5.2</span>
+                    <span class="res-stat-label">Acres</span>
+                </div>
+                <div class="res-stat-item">
+                    <span class="res-stat-value">331</span>
+                    <span class="res-stat-label">Units</span>
+                </div>
+                <div class="res-stat-item">
+                    <span class="res-stat-value">40+</span>
+                    <span class="res-stat-label">Amenities</span>
+                </div>
+                <div class="res-stat-item">
+                    <span class="res-stat-value">Dec 2026</span>
+                    <span class="res-stat-label">Possession</span>
+                </div>
+                <div class="res-stat-item">
+                    <span class="res-stat-value" style="font-size: 1.2rem; display:flex; align-items:center; height: 100%;">TN/11/Building/0045</span>
+                    <span class="res-stat-label">RERA ID</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. UNIT TYPES & FLOOR PLANS -->
+<section class="res-section">
+    <div class="container">
+        <h2 class="res-section-title">Unit Configurations</h2>
+        
+        <div class="unit-grid animate-on-scroll">
+            <div class="unit-card">
+                <h3 class="unit-type">2 BHK Premium</h3>
+                <p class="unit-area">Carpet Area: 1,150 sq.ft.</p>
+                <div class="unit-price">Starts at ₹45 Lakhs</div>
+                <a href="#" class="res-btn-outline">View Floor Plan</a>
+            </div>
+            <div class="unit-card">
+                <h3 class="unit-type">3 BHK Luxury</h3>
+                <p class="unit-area">Carpet Area: 1,680 sq.ft.</p>
+                <div class="unit-price">Starts at ₹72 Lakhs</div>
+                <a href="#" class="res-btn-outline">View Floor Plan</a>
+            </div>
+            <div class="unit-card">
+                <h3 class="unit-type">4 BHK Villa</h3>
+                <p class="unit-area">Carpet Area: 2,450 sq.ft.</p>
+                <div class="unit-price">Starts at ₹1.4 Cr</div>
+                <a href="#" class="res-btn-outline">View Floor Plan</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. AMENITIES -->
+<section class="res-section" style="background: #fff;">
+    <div class="container">
+        <h2 class="res-section-title">World-Class Amenities</h2>
+        
+        <div class="amenities-grid animate-on-scroll">
+            <div class="amenity-item">
+                <div class="amenity-icon">🏊</div>
+                <span class="amenity-text">5,700 sqft Swimming Pool</span>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🏋️</div>
+                <span class="amenity-text">Functional CrossFit Gym</span>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🌳</div>
+                <span class="amenity-text">Landscaped Gardens</span>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🎾</div>
+                <span class="amenity-text">Outdoor Sports Courts</span>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🎭</div>
+                <span class="amenity-text">Mini Home Theater</span>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🏃</div>
+                <span class="amenity-text">Jogging Track</span>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🛡️</div>
+                <span class="amenity-text">24/7 Biometric Security</span>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon">🧘</div>
+                <span class="amenity-text">Yoga & Meditation Room</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. DIRECTION-AWARE GALLERY (INTERIORS & EXTERIORS) -->
+<section class="res-section">
+    <div class="container">
+        <h2 class="res-section-title">Design & Gallery</h2>
+        <p style="font-family: 'DM Sans'; color: #4A5568; margin-bottom: 2rem; max-width: 600px;">Hover over the images to view architectural details. Our Master plans are based on five pillars: Light, Ventilation, Vaastu, Privacy, and Aesthetics.</p>
+        
+        <div class="res-gallery-grid animate-on-scroll">
+            <!-- Item 1 -->
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/home1.jpg') }}" alt="Living Room">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Living Area</div>
+                    <div class="overlay-desc">Italian Marble • 2950mm Height</div>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/home2.jpg') }}" alt="Modular Kitchen">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Modular Kitchen</div>
+                    <div class="overlay-desc">Granite Platform • FRANKE Sink</div>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/home3.jpg') }}" alt="Master Bedroom">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Master Suite</div>
+                    <div class="overlay-desc">Premium Anti-skid Flooring</div>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/home6.jpg') }}" alt="Exterior Elevation">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Front Elevation</div>
+                    <div class="overlay-desc">Seismic Zone III RCC Frame</div>
+                </div>
+            </div>
+            <!-- Item 5 -->
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/ser3.jpg') }}" alt="Clubhouse">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Clubhouse</div>
+                    <div class="overlay-desc">Multi-purpose Hall • Library</div>
+                </div>
+            </div>
+            <!-- Item 6 -->
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/ser4.jpg') }}" alt="Bathroom">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Luxury Baths</div>
+                    <div class="overlay-desc">KOHLER / JAQUAR Fittings</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. SPECIFICATIONS -->
+<section class="res-section" style="background: #fff;">
+    <div class="container">
+        <h2 class="res-section-title">Technical Specifications</h2>
+        
+        <div class="specs-grid animate-on-scroll">
+            <div>
+                <div class="spec-block">
+                    <h4 class="spec-title">Structure</h4>
+                    <p class="spec-desc">RCC framed structure designed for seismic compliance (Zone III). 200mm for external walls and 100mm for internal walls. Floor-to-floor height maintained at 2950mm.</p>
+                </div>
+                <div class="spec-block">
+                    <h4 class="spec-title">Flooring</h4>
+                    <p class="spec-desc">Living & bedrooms feature 600×600mm premium anti-skid vitrified tiles. Common areas utilize premium Italian marble or I-marble equivalents.</p>
+                </div>
+                <div class="spec-block">
+                    <h4 class="spec-title">Doors & Windows</h4>
+                    <p class="spec-desc">Main door finished with veneer and fitted with a digital lock. All window openings feature granite stone frames with high-quality aluminium anodized / UPVC sections and glass.</p>
+                </div>
+            </div>
+            <div>
+                <div class="spec-block">
+                    <h4 class="spec-title">Kitchen</h4>
+                    <p class="spec-desc">Granite kitchen platform with sink of FRANKE or equivalent make. Piped gas connection on platform; provision for RO water purifier; vitrified tile dado up to lintel level.</p>
+                </div>
+                <div class="spec-block">
+                    <h4 class="spec-title">Bathrooms</h4>
+                    <p class="spec-desc">Equipped with KOHLER or JAQUAR CP fittings and sanitary ware. Granite flooring with vitrified tile dado. Provision for instant geysers included.</p>
+                </div>
+                <div class="spec-block">
+                    <h4 class="spec-title">Lifts & Security</h4>
+                    <p class="spec-desc">Two fully automatic passenger elevators (SCHINDLER / KONE) per building, plus one service elevator. CCTV coverage in campus, reception, and basement with video door phones.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. PROGRESS & PAYMENT -->
+<section class="res-section">
+    <div class="container">
+        <div class="split-section animate-on-scroll">
+            
+            <!-- Construction Progress -->
+            <div>
+                <h2 class="res-section-title">Construction Progress</h2>
+                <img src="{{ url_for('static', filename='images/workersonsite.jpg') }}" alt="Site Progress" style="width: 100%; height: 250px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem;">
+                
+                <div style="display: flex; justify-content: space-between; font-family: 'DM Sans'; font-weight: 700; color: #28282B; margin-bottom: 0.5rem;">
+                    <span>Structural Framework</span>
+                    <span>80% Complete</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <p style="font-family: 'DM Sans'; color: #4A5568; font-size: 0.9rem;">Target Possession: December 2026</p>
+            </div>
+
+            <!-- Payment Plans -->
+            <div>
+                <h2 class="res-section-title">Pricing & Payment Plans</h2>
+                <p style="font-family: 'DM Sans'; color: #4A5568; margin-bottom: 2rem;">We offer flexible financial structures including Subvention schemes and Construction-linked plans (30:40:30).</p>
+                
+                <div style="background: #fff; border: 1px solid #E2E8F0; padding: 2rem; border-left: 4px solid #F3C623;">
+                    <h4 style="font-family: 'Cormorant Garamond'; font-size: 1.5rem; color: #28282B; margin-bottom: 0.5rem;">Construction-Linked Plan</h4>
+                    <ul style="font-family: 'DM Sans'; color: #4A5568; line-height: 1.8; padding-left: 1.5rem;">
+                        <li><strong>30%</strong> at the time of Booking & Agreement.</li>
+                        <li><strong>40%</strong> during staggered construction milestones.</li>
+                        <li><strong>30%</strong> upon Handover and Possession.</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <span style="font-family: 'DM Sans'; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; color: #718096; display: block; margin-bottom: 1rem;">Approved Home Loan Partners</span>
+                    <div style="display: flex; gap: 1.5rem; font-family: 'Cormorant Garamond'; font-size: 1.5rem; font-weight: bold; color: #28282B; opacity: 0.5;">
+                        <span>SBI</span>
+                        <span>HDFC</span>
+                        <span>ICICI</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 7. CTA / LEAD CAPTURE -->
+<section class="res-section" style="background: #28282B; color: #fff; text-align: center;">
+    <div class="container animate-on-scroll">
+        <h2 style="font-family: 'Cormorant Garamond'; font-size: 3rem; margin-bottom: 1rem;">Schedule a Virtual Tour</h2>
+        <p style="font-family: 'DM Sans'; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our NRI Desk is available 24/7. Provide your details and download the complete project brochure, floor plans, and pricing breakdown.</p>
+        
+        <form style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;" action="/contact" method="GET">
+            <input type="text" placeholder="Full Name" required style="padding: 1rem; border: none; font-family: 'DM Sans'; border-radius: 4px;">
+            <input type="tel" placeholder="Phone Number (with Country Code)" required style="padding: 1rem; border: none; font-family: 'DM Sans'; border-radius: 4px;">
+            <button type="submit" style="padding: 1.2rem; background: #F3C623; color: #fff; border: none; font-family: 'DM Sans'; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 4px; cursor: pointer;">Download Brochure</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// DIRECTION-AWARE HOVER OVERLAY FOR GALLERY
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    function getHoverDirection(e, item) {
+        const rect = item.getBoundingClientRect();
+        const w = item.offsetWidth;
+        const h = item.offsetHeight;
+        
+        // Calculate X and Y relative to the center of the element
+        const x = (e.clientX - rect.left - (w / 2)) * (w > h ? (h / w) : 1);
+        const y = (e.clientY - rect.top - (h / 2)) * (h > w ? (w / h) : 1);
+        
+        // Calculate the angle and determine direction (0: Top, 1: Right, 2: Bottom, 3: Left)
+        const direction = Math.round((Math.atan2(y, x) * (180 / Math.PI) + 180) / 90 + 3) % 4;
+        return direction;
+    }
+
+    function applyHoverEffect(e, item, isEnter) {
+        const overlay = item.querySelector('.gallery-overlay');
+        const direction = getHoverDirection(e, item);
+        
+        let translateVal = '';
+        switch(direction) {
+            case 0: translateVal = 'translateY(-100%)'; break; // Top
+            case 1: translateVal = 'translateX(100%)'; break;  // Right
+            case 2: translateVal = 'translateY(100%)'; break;  // Bottom
+            case 3: translateVal = 'translateX(-100%)'; break; // Left
+        }
+
+        if (isEnter) {
+            // Remove transition to snap to the starting edge instantly
+            overlay.style.transition = 'none';
+            overlay.style.transform = translateVal;
+            
+            // Force a browser reflow so the instant move registers before transitioning
+            void overlay.offsetWidth; 
+            
+            // Re-apply transition and move to center
+            overlay.style.transition = 'transform 0.4s ease-out';
+            overlay.style.transform = 'translate(0, 0)';
+        } else {
+            // Animate out towards the edge the mouse left from
+            overlay.style.transition = 'transform 0.4s ease-out';
+            overlay.style.transform = translateVal;
+        }
+    }
+
+    galleryItems.forEach(item => {
+        item.addEventListener('mouseenter', e => applyHoverEffect(e, item, true));
+        item.addEventListener('mouseleave', e => applyHoverEffect(e, item, false));
+    });
+
+});
+</script>
+{% endblock %}

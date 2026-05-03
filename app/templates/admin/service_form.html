@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if service %}Edit Service{% else %}New Service{% endif %} - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #FFFFFF; color: #28282B; }
+    .admin-header { background: #28282B; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .admin-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #F3C623; font-weight: 700; }
+    .admin-header nav { display: flex; gap: 2rem; }
+    .admin-header nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.85rem; }
+    .admin-header nav a:hover { color: #F3C623; }
+    .admin-main { max-width: 700px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
+    .form-card { background: #fff; border-radius: 8px; border: 1px solid #E2E8F0; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #4A5568; margin-bottom: 0.4rem; }
+    .form-control { width: 100%; padding: 0.7rem 0.9rem; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: #28282B; background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 4px; outline: none; transition: border-color 0.2s; }
+    .form-control:focus { border-color: #F3C623; }
+    textarea.form-control { resize: vertical; min-height: 100px; }
+    .form-actions { display: flex; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #E2E8F0; }
+    .btn-submit { padding: 0.9rem 2rem; background: #F3C623; color: #fff; border: none; border-radius: 4px; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: background 0.3s; }
+    .btn-submit:hover { background: #D4A017; }
+    .btn-cancel { padding: 0.9rem 1.5rem; background: transparent; color: #718096; border: 1.5px solid #E2E8F0; border-radius: 4px; text-decoration: none; font-size: 0.88rem; }
+    .flash-msg { padding: 0.8rem 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.88rem; border-left: 3px solid; }
+    .flash-danger { background: #FEF2F2; border-color: #E74C3C; color: #991B1B; }
+    </style>
+</head>
+<body>
+<header class="admin-header">
+    <h1>⚙️ TM Construction Admin</h1>
+    <nav>
+        <a href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('admin.projects_list') }}">Projects</a>
+        <a href="{{ url_for('admin.services_list') }}">Services</a>
+        <a href="{{ url_for('admin.logout') }}">Logout</a>
+    </nav>
+</header>
+<main class="admin-main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for cat, msg in messages %}
+    <div class="flash-msg flash-{{ cat }}">{{ msg }}</div>
+    {% endfor %}{% endif %}{% endwith %}
+
+    <div class="page-title">{% if service %}Edit Service{% else %}Add New Service{% endif %}</div>
+    <div class="form-card">
+        <form method="POST">
+            <div class="form-group">
+                <label class="form-label">Service Title *</label>
+                <input class="form-control" type="text" name="title" required value="{{ service.title if service else '' }}">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Icon Name</label>
+                <input class="form-control" type="text" name="icon" value="{{ service.icon if service else '' }}" placeholder="e.g. building, palette">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Image URL/Path</label>
+                <input class="form-control" type="text" name="image" value="{{ service.image if service else '' }}">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="description">{{ service.description if service else '' }}</textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Display Order</label>
+                <input class="form-control" type="number" name="display_order" value="{{ service.display_order if service else 0 }}">
+            </div>
+            <div class="form-actions">
+                <a href="{{ url_for('admin.services_list') }}" class="btn-cancel">Cancel</a>
+                <button type="submit" class="btn-submit">{% if service %}Update{% else %}Create{% endif %} Service</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>
