@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
@@ -15,7 +15,9 @@ csrf = CSRFProtect()
 
 def create_app():
     """Create and configure Flask application"""
-    app = Flask(__name__)
+    app = Flask(__name__, 
+                template_folder='app/templates',
+                static_folder='app/static')
     
     # Basic configuration for Render deployment
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
@@ -43,10 +45,20 @@ def create_app():
     login_manager.login_message = 'Please login to access this page.'
     login_manager.login_message_category = 'warning'
     
-    # Basic route for testing
-    @app.route('/')
+    # User loader for Flask-Login
+    @login_manager.user_loader
+    def load_user(user_id):
+        return None  # Simplified for deployment
+    
+    # Create main blueprint
+    main_bp = Blueprint('main', __name__)
+    
+    @main_bp.route('/')
     def index():
-        return render_template('index.html')
+        return "<h1>Thendral City Developers - Deployment Test</h1><p>App is working on Render!</p>"
+    
+    # Register blueprint
+    app.register_blueprint(main_bp)
     
     @app.errorhandler(404)
     def not_found_error(error):
