@@ -18,24 +18,8 @@ class Config:
     DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
     
     # Database Settings
-    # Use SQLite for development if MySQL is not configured
-    DB_TYPE = os.getenv('DB_TYPE', 'sqlite')
-    
-    if DB_TYPE == 'mysql':
-        # MySQL connection string format: mysql+mysqlconnector://user:password@host/database
-        DB_HOST = os.getenv('DB_HOST', 'localhost')
-        DB_PORT = os.getenv('DB_PORT', '3306')
-        DB_USER = os.getenv('DB_USER', 'root')
-        DB_PASSWORD = os.getenv('DB_PASSWORD', '')
-        DB_NAME = os.getenv('DB_NAME', 'thendral_construction')
-        
-        SQLALCHEMY_DATABASE_URI = (
-            f'mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@'
-            f'{DB_HOST}:{DB_PORT}/{DB_NAME}'
-        )
-    else:
-        # SQLite for development
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///thendral_construction.db'
+    # Use PostgreSQL for production, SQLite for development
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'sqlite:///thendral_construction.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = DEBUG
     
